@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="NORD EDIL S.R.L. - Azienda specializzata in costruzioni e ristrutturazioni a Lugo (RA). Realizziamo progetti edilizi residenziali e commerciali chiavi in mano con qualità e professionalità.">
     <meta name="keywords" content="costruzioni, ristrutturazioni, edilizia, Lugo, Ravenna, movimento terra, fognature, tetti">
     <meta name="google-site-verification" content="verificaCodiceGoogleSearchConsole" />
@@ -43,6 +43,9 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/EffectComposer.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/RenderPass.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/UnrealBloomPass.js" defer></script>
+    
+    <!-- Ottimizzazioni Mobile Dedicate -->
+    <script src="mobile-optimizations.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/CopyShader.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/LuminosityHighPassShader.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/ShaderPass.js" defer></script>
@@ -953,50 +956,244 @@
             animation: pulse 2s infinite;
         }
         
-        /* Make navigation more mobile-friendly */
+        /* NAVIGAZIONE MOBILE OTTIMIZZATA */
         @media (max-width: 768px) {
+            /* Header sticky ottimizzato */
+            .sticky-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+            }
+            
+            /* Menu mobile migliorato */
             #mobile-menu {
-                background-color: rgba(255, 255, 255, 0.95);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
                 border-radius: 0 0 1rem 1rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                z-index: 999;
+                transform: translateY(-10px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            #mobile-menu.show {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
             }
             
             #mobile-menu a {
-                display: block;
-                padding: 0.75rem 1rem;
+                display: flex;
+                align-items: center;
+                padding: 1rem 1.5rem;
+                min-height: 56px;
                 border-bottom: 1px solid rgba(0,0,0,0.05);
+                transition: all 0.2s ease;
+                touch-action: manipulation;
+            }
+            
+            #mobile-menu a:hover, #mobile-menu a:focus {
+                background-color: rgba(211, 47, 47, 0.05);
+                color: #d32f2f;
+                transform: translateX(8px);
             }
             
             #mobile-menu a:last-child {
                 border-bottom: none;
+                border-radius: 0 0 1rem 1rem;
+            }
+            
+            /* Hamburger menu animato */
+            #mobile-menu-button {
+                position: relative;
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+            
+            #mobile-menu-button:focus {
+                outline: 2px solid #d32f2f;
+                outline-offset: 2px;
+            }
+            
+            /* Compensazione per header fisso */
+            body {
+                padding-top: 80px;
+            }
+            
+            section {
+                scroll-margin-top: 100px;
             }
         }
         
-        /* Mobile optimizations complete */
+        /* OTTIMIZZAZIONI MOBILE AVANZATE */
+        
+        /* Correzione sovrapposizioni elementi fissi */
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 160px; /* Spazio per elementi fissi */
+            }
+            
+            .main-content, main, section:last-of-type {
+                margin-bottom: 80px; /* Evita sovrapposizione footer */
+            }
+            
+            /* Cookie banner mobile-friendly */
+            #cookie-banner {
+                bottom: 160px !important;
+                z-index: 997 !important;
+            }
+        }
+        
+        /* Touch targets ottimizzati (minimo 44px) */
+        @media (max-width: 768px) {
+            a, button, .btn, .clickable {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 12px 16px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                touch-action: manipulation;
+            }
+            
+            /* Spaziatura tra elementi touch */
+            .flex > *, .grid > * {
+                margin: 8px;
+            }
+            
+            /* Form elements touch-friendly */
+            input, textarea, select {
+                min-height: 44px;
+                font-size: 16px !important; /* Previene zoom iOS */
+                padding: 12px 16px;
+                border-radius: 8px;
+            }
+            
+            /* Navigation touch-friendly */
+            nav a {
+                padding: 16px 20px;
+                margin: 4px 0;
+            }
+        }
+        
+        /* Layout responsive avanzato */
         @media (max-width: 640px) {
             .header-content h1 {
-                font-size: 2.2rem !important;
+                font-size: clamp(2rem, 8vw, 2.5rem) !important;
                 line-height: 1.1 !important;
+                margin-bottom: 1rem;
             }
             
             .header-content h2 {
-                font-size: 1.1rem !important;
+                font-size: clamp(1rem, 4vw, 1.25rem) !important;
                 line-height: 1.4 !important;
+                margin-bottom: 2rem;
             }
             
             h2.text-4xl, h2.text-5xl {
-                font-size: 1.8rem !important;
+                font-size: clamp(1.5rem, 6vw, 2rem) !important;
                 line-height: 1.2 !important;
             }
             
             .container {
-                padding-left: 0.75rem !important;
-                padding-right: 0.75rem !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                max-width: 100% !important;
             }
             
             .py-20 {
-                padding-top: 2.5rem !important;
-                padding-bottom: 2.5rem !important;
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
             }
+            
+            /* Grid responsive */
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            /* Cards mobile-first */
+            .service-card, .gallery-item {
+                margin-bottom: 1.5rem;
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Performance mobile ottimizzata */
+        @media (max-width: 768px) {
+            /* Riduce animazioni per performance */
+            * {
+                transition-duration: 0.2s !important;
+            }
+            
+            /* Lazy loading ottimizzato */
+            img[data-src] {
+                background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+                background-size: 200% 100%;
+                animation: loading 1.5s infinite;
+            }
+            
+            @keyframes loading {
+                0% { background-position: 200% 0; }
+                100% { background-position: -200% 0; }
+            }
+            
+            /* Scroll ottimizzato */
+            html {
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: smooth;
+            }
+            
+            /* Font rendering ottimizzato */
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+        }
+        
+        /* Accessibilità mobile */
+        @media (max-width: 768px) {
+            /* Focus states visibili */
+            *:focus {
+                outline: 2px solid #d32f2f;
+                outline-offset: 2px;
+            }
+            
+            /* Contrasto migliorato */
+            .text-gray-600 {
+                color: #4a5568 !important;
+            }
+            
+            /* Screen reader friendly */
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+        }
             
             .py-16 {
                 padding-top: 2rem !important;
@@ -1417,9 +1614,14 @@
 </head>
 <body class="bg-gray-50">
     <!-- Contenuto completo con animazioni 3D e sezioni dinamiche -->
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/393920288504" class="fixed bottom-24 right-8 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl hover:bg-green-600 transition-all duration-300 z-50 transform hover:scale-110" style="animation: pulse 2s infinite;">
-        <i class="fab fa-whatsapp text-3xl"></i>
+    <!-- WhatsApp Floating Button ottimizzato per mobile -->
+    <a href="https://wa.me/393920288504" 
+       class="fixed bg-green-500 text-white rounded-full flex items-center justify-center shadow-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-110" 
+       style="bottom: 140px; right: 1rem; width: 56px; height: 56px; z-index: 999; animation: pulse 2s infinite; min-height: 56px; min-width: 56px;"
+       aria-label="Contattaci su WhatsApp"
+       role="button">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="sr-only">Contattaci su WhatsApp</span>
     </a>
 
     <!-- Navbar -->
@@ -1522,7 +1724,8 @@
     <section id="services" class="py-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold mb-4">I Nostri Servizi</h2>
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">I Nostri Servizi</h2>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-primary via-red-500 to-red-600 mx-auto mb-8 rounded-full shadow-lg"></div>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">Offriamo soluzioni chiavi in mano, gestendo ogni fase: dalla progettazione alla realizzazione finale per privati, aziende ed enti pubblici.</p>
             </div>
             
@@ -1533,8 +1736,8 @@
                         <img class="lazyload" data-src="/FOTO2/costruzioni chiavi in mano xd.png" alt="Costruzioni Chiavi in Mano" width="400" height="300" />
                     </div>
                     <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-home"></i>
+                        <div class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-home text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Costruzioni Chiavi in Mano</h3>
                         <p class="text-gray-600 mb-4">Realizzazione completa di edifici, dalla progettazione fino alla consegna finale.</p>
@@ -1552,8 +1755,8 @@
                         <img class="lazyload" data-src="/FOTO2/ristrutturazioni complete xd.png" alt="Ristrutturazioni Complete" width="400" height="300" />
                     </div>
                     <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-tools"></i>
+                        <div class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-tools text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Ristrutturazioni Complete</h3>
                         <p class="text-gray-600 mb-4">Ammodernamento di immobili con rifacimento impianti, infissi, tinteggiature e finiture.</p>
@@ -1571,8 +1774,8 @@
                         <img class="lazyload" data-src="/FOTO2/MOVIMENTO TERRA XD.png" alt="Movimento Terra" width="400" height="300" />
                     </div>
                     <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-truck-pickup"></i>
+                        <div class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-truck-pickup text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Movimento Terra</h3>
                         <p class="text-gray-600 mb-4">Scavi, riporti e modellazione del terreno per nuove costruzioni o infrastrutture.</p>
@@ -1590,8 +1793,8 @@
                         <img class="lazyload" data-src="/FOTO2/FOGNATURE_2.jpeg" alt="Fognature" width="400" height="300" />
                     </div>
                     <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-water"></i>
+                        <div class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-water text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Fognature</h3>
                         <p class="text-gray-600 mb-4">Progettazione e installazione di sistemi di drenaggio e smaltimento acque.</p>
@@ -1609,8 +1812,8 @@
                         <img class="lazyload" data-src="FOTO2/operai_rifacimento_tetto.jpeg" alt="Rifacimento Tetti" width="400" height="300" />
                     </div>
                     <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-home"></i>
+                        <div class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-home text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Rifacimento Tetti</h3>
                         <p class="text-gray-600 mb-4">Manutenzione o sostituzione di coperture per garantire isolamento e sicurezza.</p>
@@ -1628,8 +1831,8 @@
                         <img class="lazyload" data-src="FOTO2/pavimento_lucido_resina.png" alt="Pavimentazioni in Resina" />
                         </div>
                     <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-paint-roller"></i>
+                        <div class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-paint-roller text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Pavimentazioni in Resina</h3>
                         <p class="text-gray-600 mb-4">Soluzioni tecniche e di design per ambienti civili e industriali.</p>
@@ -1680,7 +1883,8 @@
         </style>
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4">Prima & Dopo</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">Prima & Dopo</h2>
+                <div class="w-40 h-1.5 bg-gradient-to-r from-primary via-red-500 to-red-600 mx-auto mb-8 rounded-full shadow-lg"></div>
                 <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">La nostra esperienza al tuo servizio: scopri le trasformazioni che possiamo realizzare per il tuo progetto.</p>
                 <!-- Rimosso il selettore di visualizzazione, mantenendo solo la griglia -->
 
@@ -1775,34 +1979,7 @@
                     </div>
                 </div>
 
-                <!-- Progetto 4 -->
-                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
-                     <div class="p-6 text-center border-b border-gray-200">
-                        
-                         <p class="text-sm text-gray-500">Centro Storico, Lugo (RA)</p>
-                         <div class="mt-2 flex justify-center space-x-2">
-                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Residenziale</span>
-                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2024</span>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-0 flex-grow">
-                        <div class="relative group border-r border-gray-100">
-                            <img src="FOTO2/prima 4.jpeg" alt="Prima - Progetto 4" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <img src="FOTO2/dopo 4.jpeg" alt="Dopo - Progetto 4" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                             <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <p class="text-sm text-gray-600 italic">"Completa trasformazione di un edificio storico con tecnologie moderne"</p>
-                    </div>
-                </div>
+
             </div>
             
             <!-- Rimossa la vista slider, mantenendo solo la griglia -->
@@ -2189,7 +2366,8 @@
                         <div class="inline-block px-3 py-1 bg-red-50 text-primary rounded-full text-sm font-semibold mb-4">
                             Dal 2008 - Oltre 15 anni di eccellenza
                         </div>
-                        <h2 class="text-4xl font-bold mb-6">Chi Siamo</h2>
+                        <h2 class="text-4xl font-bold mb-4 text-gray-800">Chi Siamo</h2>
+                        <div class="w-24 h-1.5 bg-gradient-to-r from-primary to-red-600 mb-6 rounded-full shadow-md"></div>
                         <h3 class="text-primary text-xl font-bold mb-6">Il partner di fiducia per le costruzioni a Lugo \ RAVENNA</h3>
                     <p class="text-gray-600 mb-6">
                             NORD EDIL S.R.L. è il partner di fiducia per le costruzioni a Lugo \ RAVENNA. Con oltre 15 anni di successi nel settore, trasformiamo idee in realtà concrete per privati, aziende ed enti pubblici. La nostra forza? Soluzioni chiavi in mano gestite dall'idea iniziale al collaudo finale.
@@ -2250,9 +2428,7 @@
                             </div>
                         </div>
                         
-                        <a href="#contact" class="inline-block bg-primary hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105 hover:shadow-lg">
-                            Contattaci
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -2260,38 +2436,55 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white fade-in">
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-50 to-white fade-in">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contattaci</h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">Compila il form per richiedere informazioni o un preventivo gratuito</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Contattaci</h2>
+                <div class="w-32 h-2 bg-gradient-to-r from-primary to-red-600 mx-auto mb-8 rounded-full shadow-lg"></div>
+                
+                <!-- Call to Action Button -->
+                <div class="mb-8">
+                    <a href="tel:+393123456789" class="inline-flex items-center bg-primary hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <i class="fas fa-phone-alt mr-3 text-lg"></i>
+                        <span class="text-lg">Chiamaci Ora</span>
+                    </a>
+                    <a href="https://wa.me/393123456789" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl ml-4">
+                        <i class="fab fa-whatsapp mr-3 text-lg"></i>
+                        <span class="text-lg">WhatsApp</span>
+                    </a>
+                </div>
+                
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">Richiedi un preventivo gratuito o contattaci per maggiori informazioni sui nostri servizi di costruzione e ristrutturazione.</p>
             </div>
             
-            <div class="flex flex-col lg:flex-row gap-10">
-                <div class="lg:w-1/2">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2 bg-white p-8 rounded-2xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-envelope text-primary mr-3"></i>
+                        Inviaci un messaggio
+                    </h3>
                     <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="name" class="block text-gray-700 mb-2">Nome <span class="text-red-500">*</span></label>
-                                <input type="text" id="name" name="name" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Nome <span class="text-primary">*</span></label>
+                                <input type="text" id="name" name="name" required aria-required="true" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300">
                             </div>
                             <div>
-                                <label for="surname" class="block text-gray-700 mb-2">Cognome <span class="text-red-500">*</span></label>
-                                <input type="text" id="surname" name="surname" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                                <label for="surname" class="block text-gray-700 font-medium mb-2">Cognome <span class="text-primary">*</span></label>
+                                <input type="text" id="surname" name="surname" required aria-required="true" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300">
                             </div>
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
-                            <input type="email" id="email" name="email" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email <span class="text-primary">*</span></label>
+                            <input type="email" id="email" name="email" required aria-required="true" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300">
                         </div>
                         <div>
-                            <label for="phone" class="block text-gray-700 mb-2">Telefono</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="+39 123 456 7890">
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Telefono</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300" placeholder="+39 123 456 7890">
                         </div>
                         <div>
-                            <label for="service" class="block text-gray-700 mb-2">Servizio di interesse</label>
-                            <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                            <label for="service" class="block text-gray-700 font-medium mb-2">Servizio di interesse</label>
+                            <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 bg-white">
                                 <option value="">Seleziona un servizio</option>
                                 <option value="costruzioni">Costruzioni Chiavi in Mano</option>
                                 <option value="ristrutturazioni">Ristrutturazioni Complete</option>
@@ -2303,56 +2496,66 @@
                             </select>
                         </div>
                         <div>
-                            <label for="message" class="block text-gray-700 mb-2">Messaggio <span class="text-red-500">*</span></label>
-                            <textarea id="message" name="message" rows="4" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Messaggio <span class="text-primary">*</span></label>
+                            <textarea id="message" name="message" rows="5" required aria-required="true" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 resize-none" placeholder="Descrivi il tuo progetto o richiesta..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-primary hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300" aria-label="Invia richiesta di contatto">
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-red-700 hover:from-red-700 hover:to-primary text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center" aria-label="Invia richiesta di contatto">
+                            <i class="fas fa-paper-plane mr-2"></i>
                             Invia Richiesta
                         </button>
                     </form>
                 </div>
                 
                 <div class="lg:w-1/2">
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Informazioni</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-primary rounded-full p-2 mr-4">
-                                    <i class="fas fa-map-marker-alt text-white"></i>
+                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl shadow-xl h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center">
+                            <i class="fas fa-info-circle text-primary mr-3"></i>
+                            Informazioni di Contatto
+                        </h3>
+                        <div class="space-y-8">
+                            <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-map-marker-alt text-white text-lg"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800">Sede</h4>
-                                    <p class="text-gray-600">Lugo \ RAVENNA<br>Emilia-Romagna, Italia</p>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Sede Operativa</h4>
+                                    <p class="text-gray-600">Lugo, Ravenna<br>Emilia-Romagna, Italia</p>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <div class="bg-primary rounded-full p-2 mr-4">
-                                    <i class="fas fa-phone-alt text-white"></i>
+                            <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-phone-alt text-white text-lg"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800">Telefono</h4>
-                                    <p class="text-gray-600">+393891524993<br>0545 1920 468</p>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Telefono</h4>
+                                    <p class="text-gray-600"><a href="tel:+393891524993" class="hover:text-primary transition-colors">+39 389 152 4993</a><br><a href="tel:0545192046" class="hover:text-primary transition-colors">0545 1920 468</a></p>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <div class="bg-primary rounded-full p-2 mr-4">
-                                    <i class="fas fa-envelope text-white"></i>
+                            <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-envelope text-white text-lg"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800">Email</h4>
-                                    <p class="text-gray-600">infonordedilsrl@gmail.com</p>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Email</h4>
+                                    <p class="text-gray-600"><a href="mailto:infonordedilsrl@gmail.com" class="hover:text-primary transition-colors">infonordedilsrl@gmail.com</a></p>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <div class="bg-primary rounded-full p-2 mr-4">
-                                    <i class="fas fa-clock text-white"></i>
+                            <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-clock text-white text-lg"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800">Orari</h4>
-                                    <p class="text-gray-600">Lun-Ven: 8:00 - 18:00<br>Sab: 9:00 - 13:00</p>
-                                </div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Orari di Lavoro</h4>
+                                    <p class="text-gray-600">Lun-Ven: 8:00 - 18:00<br>Sabato: 9:00 - 13:00<br><span class="text-sm text-gray-500">Domenica: Chiuso</span></p>
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-primary/10 rounded-xl border-l-4 border-primary">
+                            <p class="text-sm text-gray-700">
+                                <i class="fas fa-lightbulb text-primary mr-2"></i>
+                                <strong>Preventivi gratuiti</strong> - Contattaci per una consulenza personalizzata!
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -2363,8 +2566,8 @@
     <section class="py-20 bg-gray-50">
             <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold mb-4">Clienti Soddisfatti</h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">Clienti Soddisfatti</h2>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-primary via-red-500 to-red-600 mx-auto mb-8 rounded-full shadow-lg"></div>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Scopri cosa dicono i nostri clienti dei nostri servizi e della qualità del nostro lavoro.
                 </p>
@@ -2473,42 +2676,56 @@
                 </div>
             </div>
             
-            <!-- Certificazioni e Riconoscimenti -->
-            <div class="mt-16 bg-white rounded-xl shadow-xl p-10" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="text-2xl font-bold text-center mb-10 relative inline-block mx-auto">
-                    <span class="relative z-10">Certificazioni e Riconoscimenti</span>
-                    <span class="absolute -bottom-2 left-0 right-0 h-1 bg-primary opacity-70 rounded-full"></span>
-                </h3>
-                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                    <div class="text-center transform transition-all duration-300 hover:scale-110">
-                        <div class="bg-gray-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-3 shadow-md border-2 border-gray-50 transition-all duration-300 hover:shadow-lg hover:border-primary/20">
-                            <i class="fas fa-award text-primary text-3xl"></i>
+            <!-- Certificazioni e Riconoscimenti Migliorata -->
+            <div class="mt-16 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-2xl p-12 border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                        Certificazioni e Riconoscimenti
+                    </h3>
+                    <div class="w-32 h-1.5 bg-gradient-to-r from-primary to-red-600 mx-auto rounded-full shadow-md"></div>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">La nostra qualità è certificata e riconosciuta a livello nazionale</p>
+                </div>
+                
+                <!-- Certificazioni ottimizzate per mobile -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 items-center">
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i class="fas fa-award text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
                         </div>
-                        <p class="font-semibold text-gray-800">ISO 9001</p>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">ISO 9001</p>
+                        <p class="text-xs text-gray-500 mt-1">Qualità</p>
                     </div>
-                    <div class="text-center transform transition-all duration-300 hover:scale-110">
-                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
-                            <i class="fas fa-medal text-primary text-3xl"></i>
+                    
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i class="fas fa-medal text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
                         </div>
-                        <p class="font-semibold text-gray-800">SOA OG1</p>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">SOA OG1</p>
+                        <p class="text-xs text-gray-500 mt-1">Attestazione</p>
                     </div>
-                    <div class="text-center">
-                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
-                            <i class="fas fa-leaf text-primary text-3xl"></i>
+                    
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i class="fas fa-leaf text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
                         </div>
-                        <p class="font-semibold text-gray-800">ISO 14001</p>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">ISO 14001</p>
+                        <p class="text-xs text-gray-500 mt-1">Ambiente</p>
                     </div>
-                    <div class="text-center">
-                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
-                            <i class="fas fa-shield-alt text-primary text-3xl"></i>
+                    
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i class="fas fa-shield-alt text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
                         </div>
-                        <p class="font-semibold text-gray-800">ISO 45001</p>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">ISO 45001</p>
+                        <p class="text-xs text-gray-500 mt-1">Sicurezza</p>
                     </div>
-                    <div class="text-center">
-                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
-                            <i class="fas fa-thumbs-up text-primary text-3xl"></i>
+                    
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group sm:col-span-2 md:col-span-3 lg:col-span-1">
+                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i class="fas fa-star text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
                         </div>
-                        <p class="font-semibold text-gray-800">Google 4.9/5</p>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">Google 4.9/5</p>
+                        <p class="text-xs text-gray-500 mt-1">Recensioni</p>
                     </div>
                 </div>
             </div>
@@ -2677,9 +2894,15 @@
             </div>
         </footer>
 
-    <!-- Back to Top Button - Versione corretta e funzionante -->
-    <a href="#home" id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition duration-300 opacity-0 invisible transform hover:scale-110 z-50" aria-label="Torna all'inizio della pagina" role="button">
-            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    <!-- Back to Top Button ottimizzato per mobile -->
+    <a href="#home" 
+       id="back-to-top" 
+       class="fixed bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition duration-300 opacity-0 invisible transform hover:scale-110" 
+       style="bottom: 80px; right: 1rem; width: 48px; height: 48px; z-index: 998; min-height: 48px; min-width: 48px;"
+       aria-label="Torna all'inizio della pagina" 
+       role="button">
+        <i class="fas fa-arrow-up text-lg" aria-hidden="true"></i>
+        <span class="sr-only">Torna all'inizio</span>
     </a>
     
     <!-- Cookie Banner -->
@@ -2844,15 +3067,61 @@
                 once: true
             });
             
-            // Mobile menu toggle
+            // MOBILE MENU OTTIMIZZATO CON TOUCH SUPPORT
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
+            let isMenuOpen = false;
             
             if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-                    mobileMenu.classList.toggle('hidden');
+                // Toggle menu con animazioni fluide
+                function toggleMobileMenu() {
+                    isMenuOpen = !isMenuOpen;
+                    
+                    if (isMenuOpen) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenu.classList.add('show');
+                        mobileMenuButton.setAttribute('aria-expanded', 'true');
+                        // Previene scroll del body quando menu è aperto
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        mobileMenu.classList.remove('show');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                        
+                        // Nasconde il menu dopo l'animazione
+                        setTimeout(() => {
+                            if (!isMenuOpen) {
+                                mobileMenu.classList.add('hidden');
+                            }
+                        }, 300);
+                    }
+                }
+                
+                // Event listeners ottimizzati per touch
+                mobileMenuButton.addEventListener('click', toggleMobileMenu);
+                
+                // Chiudi menu quando si clicca su un link
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (isMenuOpen) {
+                            toggleMobileMenu();
+                        }
+                    });
+                });
+                
+                // Chiudi menu con ESC
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape' && isMenuOpen) {
+                        toggleMobileMenu();
+                    }
+                });
+                
+                // Chiudi menu cliccando fuori
+                document.addEventListener('click', function(event) {
+                    if (isMenuOpen && !mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        toggleMobileMenu();
+                    }
                 });
             }
             
