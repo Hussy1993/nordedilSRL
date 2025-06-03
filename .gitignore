@@ -58,3 +58,7 @@ pids
 # Backup files
 *.bak
 *.backup
+
+# Vite
+dist/
+.vite/
