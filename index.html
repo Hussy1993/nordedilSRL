@@ -1,0 +1,3025 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NORD EDIL S.R.L. - Azienda specializzata in costruzioni e ristrutturazioni a Lugo (RA). Realizziamo progetti edilizi residenziali e commerciali chiavi in mano con qualità e professionalità.">
+    <meta name="keywords" content="costruzioni, ristrutturazioni, edilizia, Lugo, Ravenna, movimento terra, fognature, tetti">
+    <meta name="google-site-verification" content="verificaCodiceGoogleSearchConsole" />
+    <link rel="canonical" href="https://nordedilsrl.it" />
+    <title>NORD EDIL S.R.L. - Costruzioni e ristrutturazioni a Lugo (RA)</title>
+    
+    <!-- Preload risorse critiche -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style">
+    
+    <!-- CSS Ottimizzato -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Librerie CSS aggiuntive -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Lazy loading immagini -->
+    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
+    
+    <!-- Script non critici caricati in modo differito -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="gallery.js" defer></script>
+    
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Three.js e librerie correlate -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@18.6.4/dist/tween.umd.js" defer></script>
+    
+    <!-- Post-processing per effetti fotorealistici (caricati in modo differito) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/EffectComposer.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/RenderPass.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/UnrealBloomPass.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/CopyShader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/LuminosityHighPassShader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/ShaderPass.js" defer></script>
+    
+    <!-- Script animazione personalizzata -->
+    <script src="animation.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inizializzazione Swiper per i loghi dei clienti
+            if (document.querySelector('.client-logo-slider')) {
+                new Swiper('.client-logo-slider', {
+                    loop: true,
+                    slidesPerView: 2, // Numero di loghi visibili su mobile
+                    spaceBetween: 20,
+                    autoplay: {
+                        delay: 2500,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.client-logo-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        // when window width is >= 640px
+                        640: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
+                        },
+                        // when window width is >= 768px
+                        768: {
+                            slidesPerView: 4,
+                            spaceBetween: 40
+                        },
+                        // when window width is >= 1024px
+                        1024: {
+                            slidesPerView: 5,
+                            spaceBetween: 50
+                        }
+                    }
+                });
+            }
+            
+            // Inizializzazione AOS ottimizzata per mobile
+            if (typeof AOS !== 'undefined') {
+                const isMobile = window.innerWidth < 768;
+                AOS.init({
+                    duration: isMobile ? 600 : 800, // Animazioni più veloci su mobile
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: isMobile ? 50 : 120, // Trigger più anticipato su mobile
+                    delay: isMobile ? 0 : 100,
+                    disable: function() {
+                        // Disabilita AOS su dispositivi molto lenti
+                        return window.innerWidth < 480 && navigator.hardwareConcurrency < 4;
+                    }
+                });
+            }
+            
+            // Ottimizzazione lazy loading immagini
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.classList.remove('lazy');
+                                observer.unobserve(img);
+                            }
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+                
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+            
+            // Ottimizzazione navigazione mobile
+            const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
+            const mobileMenu = document.querySelector('[data-mobile-menu]');
+            
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('animate-fadeDown');
+                    
+                    // Previene lo scroll del body quando il menu è aperto
+                    document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
+                });
+                
+                // Chiude il menu quando si clicca su un link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+            
+            // Ottimizzazione performance scroll
+            let ticking = false;
+            function updateScrollPosition() {
+                // Logica per header sticky, parallax, etc.
+                ticking = false;
+            }
+            
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    requestAnimationFrame(updateScrollPosition);
+                    ticking = true;
+                }
+            }, { passive: true });
+            
+            // Preload delle immagini critiche
+            const criticalImages = [
+                'FOTO2/IMMAGINE PRO.png',
+                'FOTO2/WhatsApp Image 2025-04-04 at 17.50.06 (2).jpeg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = src;
+                document.head.appendChild(link);
+            });
+            
+            // Gestione orientamento dispositivo
+            window.addEventListener('orientationchange', function() {
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 100);
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #ffffff;
+            --accent-color: #2c3e50;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            scroll-behavior: smooth;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .bg-primary {
+            background-color: var(--primary-color);
+        }
+        
+        .text-primary {
+            color: var(--primary-color);
+        }
+        
+        .border-primary {
+            border-color: var(--primary-color);
+        }
+        
+        .bg-accent {
+            background-color: var(--accent-color);
+        }
+        
+        .text-accent {
+            color: var(--accent-color);
+        }
+        
+        .header {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            background-color: #222;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        /* Ripristino container animazione */
+        #animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+            overflow: hidden;
+            /* Nuove proprietà per migliorare la visibilità */
+            min-height: 600px;
+        }
+        
+        /* Miglioramenti per la responsività dell'header */
+        .header {
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            #animation-container {
+                min-height: 500px;
+            }
+            
+            .header {
+                min-height: 100vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #animation-container {
+                min-height: 450px;
+            }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0,0,0,0.6);
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+        
+        /* Stili per lo slideshow header */
+        .swiper {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            opacity: 0.5;
+        }
+        
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: var(--primary-color);
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 20px;
+        }
+        
+        /* Nuovi stili per la gallery */
+        .projects-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 300px;
+            grid-auto-flow: dense;
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transition: all 0.5s ease;
+            transform: translateY(20px);
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(211, 47, 47, 0.2);
+        }
+        
+        .hover-grow {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-grow:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Custom styling for the sticky header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        /* Animated underline for nav links */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Animation for mobile menu */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeDown {
+            animation: fadeDown 0.3s ease-out forwards;
+        }
+        
+        /* Custom styling for the contact form */
+        input:focus, textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        button {
+            transition: all 0.3s ease;
+        }
+
+        /* Project gallery */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-auto-rows: 250px;
+            grid-gap: 1.5rem;
+            grid-auto-flow: dense;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 1rem;
+            position: relative;
+            height: 250px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        
+        
+        /* Swiper for mobile gallery */
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .projects-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-auto-rows: 250px;
+            }
+            
+            .gallery-item.wide {
+                grid-column: span 1;
+            }
+            
+            .gallery-item.tall {
+                grid-row: span 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .responsive-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 200px;
+            }
+            
+            .projects-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 200px;
+                gap: 15px;
+            }
+            
+            .header-content {
+                padding: 1.5rem !important;
+                margin: 1rem !important;
+            }
+            
+            .header-content h1 {
+                font-size: 2.2rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .header-content h2 {
+                font-size: 1.1rem !important;
+                margin-top: 0.5rem !important;
+            }
+            
+            h2.text-4xl, h2.text-5xl {
+                font-size: 1.8rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            h3.text-2xl {
+                font-size: 1.4rem !important;
+            }
+            
+            .py-20 {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+            
+            .py-16 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            .gallery-item {
+                height: 180px !important;
+            }
+            
+            .service-image {
+                height: 160px !important;
+            }
+            
+            .service-card {
+                margin-bottom: 1rem;
+            }
+            
+            .mb-16 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .mb-12 {
+                margin-bottom: 1rem !important;
+            }
+            
+            /* Ottimizzazione navigazione mobile */
+            .nav-link {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.9rem !important;
+            }
+            
+            /* Miglioramento form contatti */
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 16px !important; /* Previene zoom su iOS */
+            }
+            
+            /* Ottimizzazione testimonial */
+            .testimonial-card {
+                padding: 1.5rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .header-content {
+                padding: 1rem !important;
+                margin: 0.5rem !important;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            .header-content h2 {
+                font-size: 1rem !important;
+            }
+            
+            .grid-cols-3, .grid-cols-4 {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .gap-8 {
+                gap: 0.75rem !important;
+            }
+            
+            .gap-6 {
+                gap: 0.5rem !important;
+            }
+            
+            .projects-gallery {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 250px;
+                gap: 10px;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 200px;
+                gap: 10px;
+            }
+            
+            /* Ottimizzazione pulsanti */
+            .btn {
+                padding: 0.75rem 1.5rem !important;
+                font-size: 0.9rem !important;
+                min-height: 44px; /* Touch target size */
+            }
+            
+            /* Miglioramento spaziatura sezioni */
+            .py-20 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            .py-16 {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+            }
+            
+            /* Ottimizzazione testo */
+            p {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content h1 {
+                font-size: 1.6rem !important;
+            }
+            
+            .header-content h2 {
+                font-size: 0.9rem !important;
+            }
+            
+            h2.text-4xl, h2.text-5xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .service-image {
+                height: 140px !important;
+            }
+            
+            .gallery-item {
+                height: 160px !important;
+            }
+            
+            .projects-gallery {
+                grid-auto-rows: 200px;
+            }
+        }
+
+        .logo-container {
+            padding: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .service-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 1rem 1rem 0 0;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-radius: 1rem 1rem 0 0;
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.08);
+        }
+        
+        .service-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .service-card:hover .service-image::after {
+            opacity: 1;
+        }
+        
+        .service-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Modern hover effects */
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(211,47,47,0.1), rgba(211,47,47,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+    
+        .service-card:hover .service-image::before {
+            opacity: 1;
+        }
+    
+        /* Modern gallery layout */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-auto-rows: 250px;
+            grid-gap: 1.5rem;
+            grid-auto-flow: dense;
+        }
+    
+        /* Section animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    
+        /* Modern service cards */
+        .service-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* Enhanced styling for various elements */
+        .testimonial-quote {
+            position: relative;
+        }
+        
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 5rem;
+            font-family: serif;
+            position: absolute;
+            top: -2rem;
+            left: -1rem;
+            color: rgba(211,47,47,0.1);
+            z-index: 0;
+        }
+        
+        /* Enhanced animation for page elements */
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .fade-right {
+            animation: fadeInRight 0.8s ease forwards;
+        }
+        
+        .fade-left {
+            animation: fadeInLeft 0.8s ease forwards;
+        }
+        
+        img {
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+    
+        .team-member img {
+            border: 4px solid white;
+            box-shadow: 0 10px 40px rgba(211,47,47,0.2);
+        }
+        
+        /* Ottimizzazioni performance mobile */
+        @media (max-width: 768px) {
+            /* Disabilita animazioni complesse su mobile per performance */
+            .service-card:hover {
+                transform: translateY(-4px) !important;
+            }
+            
+            .gallery-item:hover {
+                transform: translateY(-2px) !important;
+            }
+            
+            .gallery-item:hover img {
+                transform: scale(1.03) !important;
+            }
+            
+            /* Riduce le ombre per performance */
+            .service-card {
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+            }
+            
+            .gallery-item {
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+            }
+            
+            /* Ottimizza le transizioni */
+            * {
+                transition-duration: 0.2s !important;
+            }
+            
+            /* Migliora la leggibilità del testo */
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+            
+            /* Ottimizza lo scroll */
+            html {
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: smooth;
+            }
+            
+            /* Migliora i tap targets */
+            a, button, .clickable {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Previene il zoom accidentale */
+            input, textarea, select {
+                font-size: 16px !important;
+            }
+        }
+        
+        /* Ottimizzazioni specifiche per dispositivi touch */
+        @media (hover: none) and (pointer: coarse) {
+            /* Rimuove hover effects su dispositivi touch */
+            .service-card:hover,
+            .gallery-item:hover,
+            .hover-grow:hover {
+                transform: none !important;
+            }
+            
+            /* Migliora l'interazione touch */
+            .service-card,
+            .gallery-item {
+                cursor: default;
+            }
+            
+            /* Focus states per accessibilità */
+            .service-card:focus,
+            .gallery-item:focus {
+                outline: 2px solid var(--primary-color);
+                outline-offset: 2px;
+            }
+        }
+        
+        /* Ottimizzazioni per connessioni lente */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* WhatsApp button pulse animation */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .whatsapp-btn {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Make navigation more mobile-friendly */
+        @media (max-width: 768px) {
+            #mobile-menu {
+                background-color: rgba(255, 255, 255, 0.95);
+                border-radius: 0 0 1rem 1rem;
+            }
+            
+            #mobile-menu a {
+                display: block;
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+            
+            #mobile-menu a:last-child {
+                border-bottom: none;
+            }
+        }
+        
+        /* Mobile optimizations complete */
+        @media (max-width: 640px) {
+            .header-content h1 {
+                font-size: 2.2rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .header-content h2 {
+                font-size: 1.1rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            h2.text-4xl, h2.text-5xl {
+                font-size: 1.8rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .container {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+            
+            .py-20 {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+            
+            .py-16 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            .gallery-item {
+                height: 200px !important;
+            }
+            
+            /* Ottimizzazione navigazione mobile */
+            .sticky-header {
+                padding: 0.5rem 0 !important;
+            }
+            
+            .logo-container {
+                width: 3rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1.1rem !important;
+            }
+            
+            .text-xs {
+                font-size: 0.7rem !important;
+            }
+            
+            /* Miglioramento menu mobile */
+            #mobile-menu {
+                margin: 0 0.75rem;
+                border-radius: 0.75rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+            }
+            
+            #mobile-menu a {
+                padding: 1rem !important;
+                font-size: 1rem !important;
+                min-height: 48px !important;
+            }
+            
+            /* Ottimizzazione pulsanti */
+            .bg-primary, .bg-green-500 {
+                min-height: 48px !important;
+                padding: 0.75rem 1.5rem !important;
+                font-size: 0.95rem !important;
+            }
+            
+            /* Miglioramento form */
+            input, textarea, select {
+                padding: 1rem !important;
+                font-size: 16px !important;
+                border-radius: 0.5rem !important;
+            }
+            
+            /* Ottimizzazione card servizi */
+            .service-card {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .service-image {
+                height: 180px !important;
+            }
+            
+            /* Miglioramento spaziatura */
+            .mb-16 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .mb-12 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1rem !important;
+            }
+            
+            /* Ottimizzazione griglia */
+            .grid-cols-3 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .gap-8 {
+                gap: 1rem !important;
+            }
+            
+            .gap-6 {
+                 gap: 0.75rem !important;
+             }
+        }
+        
+        /* Ottimizzazioni per dispositivi molto piccoli */
+        @media (max-width: 375px) {
+            .header-content h1 {
+                font-size: 1.9rem !important;
+            }
+            
+            .header-content h2 {
+                font-size: 1rem !important;
+            }
+            
+            .container {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+            
+            .py-20 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            .gallery-item {
+                height: 180px !important;
+            }
+            
+            .service-image {
+                height: 160px !important;
+            }
+            
+            #mobile-menu {
+                margin: 0 0.5rem;
+            }
+            
+            .bg-primary, .bg-green-500 {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        @media (max-width: 640px) {
+             .grid-cols-3, .grid-cols-4 {
+                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .gap-8 {
+                gap: 1rem !important;
+            }
+            
+            .mb-16 {
+                margin-bottom: 2rem !important;
+            }
+            
+            /* Better mobile navigation */
+            .sticky-header {
+                padding: 0.75rem 0;
+            }
+            
+            #mobile-menu {
+                top: 100%;
+                left: 0;
+                right: 0;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 1rem 1rem;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            #mobile-menu.hidden {
+                opacity: 0;
+                transform: translateY(-10px);
+                pointer-events: none;
+            }
+            
+            #mobile-menu a:hover, #mobile-menu a:focus {
+                background-color: rgba(211, 47, 47, 0.05);
+                outline: none;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+            
+            /* Touch-friendly tap targets */
+            button, 
+            a,
+            .clickable {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Miglioramento accessibilità focus */
+            button:focus, a:focus {
+                outline: 2px solid var(--primary-color);
+                outline-offset: 2px;
+            }
+            
+            /* Stato attivo per feedback tattile */
+            button:active, a:active {
+                transform: scale(0.98);
+            }
+            
+            /* Fixed position for WhatsApp button to ensure it's visible */
+            .whatsapp-fixed {
+                position: fixed;
+                bottom: 24px;
+                right: 24px;
+                z-index: 50;
+            }
+            
+            /* Stack sections more comfortably on mobile */
+            section {
+                scroll-margin-top: 80px;
+            }
+            
+            /* Better form handling on mobile */
+            input, select, textarea {
+                font-size: 16px !important; /* Prevents iOS zoom on focus */
+            }
+        }
+        
+        /* Improved focus styles for accessibility */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* Hide the outline for mouse users but show for keyboard users */
+        :focus:not(:focus-visible) {
+            outline: none;
+        }
+        
+        /* Better loading performance */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .lazy-load.lazyloaded {
+            opacity: 1;
+        }
+        
+        /* Prevent layout shift during image loading */
+        img.lazyload {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        
+        img.lazyloaded {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+        
+        /* Stili per la sezione di recensioni */
+        .verified-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .star-rating {
+            color: #FFC107;
+            display: flex;
+            margin-top: 0.5rem;
+        }
+        
+        /* Stili aggiornati per i servizi */
+        .service-card {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transform: translateY(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(211, 47, 47, 0.15);
+        }
+        
+        .service-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .service-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(211, 47, 47, 0) 0%, rgba(211, 47, 47, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .service-card:hover .service-image::after {
+            opacity: 1;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.08);
+        }
+        
+        .service-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            background: white;
+        }
+        
+        .service-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(211, 47, 47, 0.1);
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            background-color: var(--primary-color);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        /* Stili migliorati per le testimonianze */
+        .testimonial-card {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 120px;
+            font-family: serif;
+            color: rgba(211, 47, 47, 0.07);
+            z-index: -1;
+            line-height: 1;
+        }
+        
+        .testimonial-card:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .testimonial-quote {
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover .testimonial-avatar {
+            transform: scale(1.1);
+            border-color: rgba(211, 47, 47, 0.2);
+        }
+        
+        /* Responsive masonry gallery per piccoli schermi */
+        @media (max-width: 768px) {
+            .projects-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 200px;
+            }
+            
+            .gallery-item.wide, .gallery-item.tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Contenuto completo con animazioni 3D e sezioni dinamiche -->
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/393920288504" class="fixed bottom-24 right-8 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl hover:bg-green-600 transition-all duration-300 z-50 transform hover:scale-110" style="animation: pulse 2s infinite;">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="sticky-header bg-white bg-opacity-95 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-16 md:w-20 logo-container transition-transform duration-300 hover:scale-105">
+                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/780a1a46b25e85d8968761c566fe22f0" alt="NORD EDIL S.R.L. Logo" class="w-full h-auto">
+                </div>
+                <div class="ml-3">
+                    <h1 class="text-xl md:text-2xl font-bold text-primary">NORD EDIL S.R.L.</h1>
+                    <p class="text-xs md:text-sm text-gray-600">Costruzioni e ristrutturazioni a Lugo (RA)</p>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-800 hover:text-primary font-medium transition duration-300 relative nav-link">Home</a>
+                <a href="#services" class="text-gray-800 hover:text-primary font-medium transition duration-300 relative nav-link">Servizi</a>
+                <a href="#about" class="text-gray-800 hover:text-primary font-medium transition duration-300 relative nav-link">Chi Siamo</a>
+                <a href="#contact" class="text-gray-800 hover:text-primary font-medium transition duration-300 relative nav-link">Contatti</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 hover:text-primary focus:outline-none transition duration-300 transform hover:scale-110" aria-label="Menu di navigazione" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu ottimizzato (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-xl rounded-xl border-t border-gray-100 animate-fadeDown">
+            <div class="flex flex-col space-y-2">
+                <a href="#home" class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-home mr-3 text-primary text-lg"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#services" class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-tools mr-3 text-primary text-lg"></i>
+                    <span>Servizi</span>
+                </a>
+                <a href="#about" class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-users mr-3 text-primary text-lg"></i>
+                    <span>Chi Siamo</span>
+                </a>
+                <a href="#contact" class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-envelope mr-3 text-primary text-lg"></i>
+                    <span>Contatti</span>
+                </a>
+                <div class="border-t border-gray-100 my-2"></div>
+                <a href="https://wa.me/393891524993" class="bg-green-500 text-white font-medium py-3 px-4 rounded-lg hover:bg-green-600 transition duration-300 flex items-center justify-center shadow-md hover:shadow-lg" aria-label="Contattaci su WhatsApp">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                    <span>Contattaci su WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="header relative min-h-screen flex items-center justify-center text-white">
+        <div id="animation-container" class="absolute top-0 left-0 w-full h-full z-0"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="header-content text-center max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">NORD EDIL S.R.L.</h1>
+                <h2 class="text-xl md:text-2xl mb-8">Professionisti nella costruzione e ristrutturazione dal progetto alla consegna</h2>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#contact" class="bg-primary hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        Richiedi un preventivo
+                    </a>
+                    <a href="#services" class="bg-transparent hover:bg-white hover:text-primary text-white font-bold py-4 px-8 border-2 border-white hover:border-transparent rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        I nostri servizi
+                    </a>
+                </div>
+                    </div>
+                </div>
+    </header>
+
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:shadow-3xl hover:-translate-y-2" data-aos="fade-up">
+                <div class="relative overflow-hidden">
+                    <img src="FOTO2/IMMAGINE PRO.png" alt="Servizi Professionali NORD EDIL" class="w-full h-auto transition-transform duration-700 hover:scale-105" width="800" height="500" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-10 text-center">
+                    <h3 class="text-3xl font-bold mb-4 text-primary">Eccellenza nei Progetti Edili</h3>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">Realizziamo progetti all'avanguardia con attenzione ai dettagli e tecniche costruttive di ultima generazione.</p>
+                    <a href="#contact" class="inline-block bg-primary hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        Richiedi una Consulenza
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section migliorato -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">I Nostri Servizi</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Offriamo soluzioni chiavi in mano, gestendo ogni fase: dalla progettazione alla realizzazione finale per privati, aziende ed enti pubblici.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Costruzioni -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/costruzioni chiavi in mano xd.png" alt="Costruzioni Chiavi in Mano" width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Costruzioni Chiavi in Mano</h3>
+                        <p class="text-gray-600 mb-4">Realizzazione completa di edifici, dalla progettazione fino alla consegna finale.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ristrutturazioni -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/ristrutturazioni complete xd.png" alt="Ristrutturazioni Complete" width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Ristrutturazioni Complete</h3>
+                        <p class="text-gray-600 mb-4">Ammodernamento di immobili con rifacimento impianti, infissi, tinteggiature e finiture.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Movimento Terra -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/MOVIMENTO TERRA XD.png" alt="Movimento Terra" width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-truck-pickup"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Movimento Terra</h3>
+                        <p class="text-gray-600 mb-4">Scavi, riporti e modellazione del terreno per nuove costruzioni o infrastrutture.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fognature -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/FOGNATURE_2.jpeg" alt="Fognature" width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Fognature</h3>
+                        <p class="text-gray-600 mb-4">Progettazione e installazione di sistemi di drenaggio e smaltimento acque.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rifacimento Tetti -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/operai_rifacimento_tetto.jpeg" alt="Rifacimento Tetti" width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Rifacimento Tetti</h3>
+                        <p class="text-gray-600 mb-4">Manutenzione o sostituzione di coperture per garantire isolamento e sicurezza.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pavimentazioni in Resina -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/pavimento_lucido_resina.png" alt="Pavimentazioni in Resina" />
+                        </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-roller"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Pavimentazioni in Resina</h3>
+                        <p class="text-gray-600 mb-4">Soluzioni tecniche e di design per ambienti civili e industriali.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Prima e Dopo Section -->
+    <section id="prima-dopo" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <style>
+            /* Stili personalizzati per la sezione Prima e Dopo */
+            .prima-dopo-card:hover {
+                transform: translateY(-10px);
+            }
+            .image-compare {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            .compare-slider {
+                box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            }
+            .slider-button {
+                color: var(--color-primary, #1a56db);
+                transition: transform 0.3s ease;
+            }
+            .slider-button:hover {
+                transform: scale(1.1);
+            }
+            .after-container {
+                border-right: 2px solid white;
+            }
+            #view-grid.active, #view-slider.active {
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            @media (max-width: 768px) {
+                .prima-dopo-slider {
+                    margin-bottom: 2rem;
+                }
+            }
+        </style>
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4">Prima & Dopo</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">La nostra esperienza al tuo servizio: scopri le trasformazioni che possiamo realizzare per il tuo progetto.</p>
+                <!-- Rimosso il selettore di visualizzazione, mantenendo solo la griglia -->
+
+            </div>
+            <!-- Vista a griglia -->
+            <div id="grid-view" class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                <!-- Progetto 1 -->
+                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6 text-center border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800 text-xl mb-2">Ristrutturazione Residenziale</h3>
+                        <p class="text-sm text-gray-500">Via dei Platani, Lugo \ RAVENNA</p>
+                        <div class="mt-2 flex justify-center space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Residenziale</span>
+                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2023</span>
+                        </div>
+                     </div>
+                    <div class="grid grid-cols-2 gap-0 flex-grow">
+                        <div class="relative group border-r border-gray-100">
+                            <img src="FOTO2/PRIMA 1.jpeg" alt="Prima - Progetto 1" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <img src="FOTO2/DOPO 1.jpeg" alt="Dopo - Progetto 1" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                            <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
+                            </div>
+                        </div>
+                   </div>
+                   <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <p class="text-sm text-gray-600 italic">"Completa ristrutturazione con rinnovamento degli interni e miglioramento energetico"</p>
+                   </div>
+                </div>
+
+                <!-- Progetto 2 -->
+                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6 text-center border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800 text-xl mb-2">Ampliamento Esterno</h3>
+                        <p class="text-sm text-gray-500">Località San Lorenzo, Lugo (RA)</p>
+                        <div class="mt-2 flex justify-center space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Commerciale</span>
+                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2022</span>
+                        </div>
+                    </div>
+                   <div class="grid grid-cols-2 gap-0 flex-grow">
+                        <div class="relative group border-r border-gray-100">
+                            <img src="FOTO2/PRIMA 2.jpeg" alt="Prima - Progetto 2" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <img src="FOTO2/DOPO 2.jpeg" alt="Dopo - Progetto 2" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                            <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <p class="text-sm text-gray-600 italic">"Ampliamento della struttura esistente con nuovi spazi funzionali e moderni"</p>
+                    </div>
+                </div>
+
+                <!-- Progetto 3 -->
+                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                     <div class="p-6 text-center border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800 text-xl mb-2">RIFACIMENTO TETTI</h3>
+                         <p class="text-sm text-gray-500">Zona Industriale, Lugo (RA)</p>
+                         <div class="mt-2 flex justify-center space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Industriale</span>
+                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2023</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-0 flex-grow">
+                        <div class="relative group border-r border-gray-100">
+                            <img src="FOTO2/tetto prima.jpeg" alt="Prima - Rifacimento Tetti" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <!-- Usiamo object-contain per png trasparenti o con dimensioni diverse -->
+                            <img src="FOTO2/tetto dopo.jpeg" alt="Dopo - Rifacimento Tetti" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                             <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <p class="text-sm text-gray-600 italic">"Intervento completo di rifacimento tetto con materiali innovativi e tecniche avanzate"</p>
+                    </div>
+                </div>
+
+                <!-- Progetto 4 -->
+                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
+                     <div class="p-6 text-center border-b border-gray-200">
+                        
+                         <p class="text-sm text-gray-500">Centro Storico, Lugo (RA)</p>
+                         <div class="mt-2 flex justify-center space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Residenziale</span>
+                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2024</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-0 flex-grow">
+                        <div class="relative group border-r border-gray-100">
+                            <img src="FOTO2/prima 4.jpeg" alt="Prima - Progetto 4" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <img src="FOTO2/dopo 4.jpeg" alt="Dopo - Progetto 4" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
+                             <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-100">
+                        <p class="text-sm text-gray-600 italic">"Completa trasformazione di un edificio storico con tecnologie moderne"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rimossa la vista slider, mantenendo solo la griglia -->
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-lg text-gray-700">Hai un progetto simile? <a href="#contact" class="text-primary font-semibold hover:underline">Contattaci ora!</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Galleria Foto -->
+    <section id="galleria" class="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <!-- Header della Galleria -->
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
+                    <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+                    <span class="text-primary">Galleria</span> dei Nostri Lavori
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Scopri le nostre realizzazioni più prestigiose che testimoniano 
+                    <span class="font-semibold text-primary">l'eccellenza</span> e 
+                    <span class="font-semibold text-primary">l'esperienza</span> del nostro team
+                </p>
+                <div class="mt-6 flex justify-center">
+                    <div class="h-1 w-24 bg-gradient-to-r from-primary to-red-600 rounded-full"></div>
+                </div>
+            </div>
+            
+            <!-- Slideshow Principale -->
+            <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Presentazione Progetti</h3>
+                        <p class="text-sm text-gray-600">Naviga attraverso i nostri lavori più rappresentativi</p>
+                    </div>
+                    
+                    <div id="gallery-slideshow" class="swiper gallery-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Le slide verranno generate dinamicamente con JavaScript -->
+                        </div>
+                        
+                        <!-- Controlli di navigazione migliorati -->
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </div>
+                        
+                        <!-- Indicatore progresso -->
+                        <div class="swiper-scrollbar"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Solo Headline -->
+            <div data-aos="fade-up" data-aos-delay="400" class="mt-8">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-gray-800">
+                        <span class="text-primary">Esplora</span> i Nostri Progetti
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Stili per il nuovo slideshow */
+        .gallery-swiper {
+            width: 100%;
+            height: 550px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .gallery-slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transform-origin: center center;
+            filter: brightness(0.95);
+        }
+        
+        .gallery-slide:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.05);
+        }
+        
+        .gallery-slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0));
+            color: white;
+            padding: 80px 40px 40px;
+            transform: translateY(calc(100% - 100px));
+            transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+        }
+        
+        .gallery-slide:hover .gallery-slide-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-slide-overlay h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            opacity: 0.9;
+            transition: all 0.4s ease 0.1s;
+        }
+        
+        .gallery-slide-overlay p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.2s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-slide:hover .gallery-slide-overlay h3,
+        .gallery-slide:hover .gallery-slide-overlay p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Personalizzazione controlli Swiper */
+        .gallery-swiper .swiper-pagination {
+            bottom: 20px;
+        }
+        
+        .gallery-swiper .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            margin: 0 6px;
+        }
+        
+        .gallery-swiper .swiper-pagination-bullet-active {
+            width: 30px;
+            border-radius: 5px;
+            background: var(--color-primary);
+            opacity: 1;
+        }
+        
+        .gallery-swiper .swiper-button-next,
+        .gallery-swiper .swiper-button-prev {
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-50%) scale(0.9);
+            opacity: 0;
+        }
+        
+        .gallery-swiper:hover .swiper-button-next,
+        .gallery-swiper:hover .swiper-button-prev {
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+        }
+        
+        .gallery-swiper .swiper-button-next:hover,
+        .gallery-swiper .swiper-button-prev:hover {
+            background: var(--color-primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .gallery-swiper .swiper-button-next:after,
+        .gallery-swiper .swiper-button-prev:after {
+            display: none;
+        }
+        
+        .gallery-swiper .swiper-scrollbar {
+            bottom: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .gallery-swiper .swiper-scrollbar-drag {
+            background: var(--color-primary);
+            border-radius: 4px;
+        }
+        
+
+        
+        /* Pulsante carica altre foto */
+        #load-more-gallery {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #load-more-gallery:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s;
+        }
+        
+        #load-more-gallery:hover:before {
+            left: 100%;
+        }
+        
+        /* Responsive Ottimizzato */
+        @media (max-width: 1200px) {
+            .gallery-swiper {
+                height: 480px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            #galleria {
+                padding: 3rem 0;
+            }
+            .gallery-swiper {
+                height: 420px;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #galleria {
+                padding: 2.5rem 0;
+            }
+            .gallery-swiper {
+                height: 320px;
+                border-radius: 8px;
+            }
+            .gallery-slide-content {
+                padding: 20px 12px 12px;
+            }
+            .gallery-slide-overlay h3 {
+                font-size: 1.1rem;
+            }
+            .gallery-slide-overlay p {
+                font-size: 0.85rem;
+            }
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 35px;
+                height: 35px;
+            }
+            .swiper-button-next svg,
+            .swiper-button-prev svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            #galleria {
+                padding: 2rem 0;
+            }
+            .gallery-swiper {
+                height: 280px;
+            }
+            .text-center h2 {
+                font-size: 2.5rem;
+            }
+            .text-center p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #galleria {
+                padding: 1.5rem 0;
+            }
+            .gallery-swiper {
+                height: 250px;
+                border-radius: 6px;
+            }
+            .gallery-overlay {
+                padding: 12px 10px 10px;
+            }
+            .gallery-overlay h3 {
+                font-size: 0.9rem;
+                margin-bottom: 2px;
+            }
+            .gallery-overlay p {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 30px;
+                height: 30px;
+            }
+            .swiper-button-next svg,
+            .swiper-button-prev svg {
+                width: 16px;
+                height: 16px;
+            }
+            .swiper-pagination-bullet {
+                width: 6px;
+                height: 6px;
+            }
+            .text-center h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            .text-center h3 {
+                font-size: 1.5rem;
+            }
+            .container {
+                padding: 0 0.75rem;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .gallery-swiper {
+                height: 220px;
+            }
+            .text-center h2 {
+                font-size: 1.75rem;
+            }
+            .gallery-overlay h3 {
+                font-size: 0.8rem;
+            }
+            .gallery-overlay p {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+
+    <!-- About Section migliorata -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap items-center">
+                <div class="w-full lg:w-1/2 mb-12 lg:mb-0" data-aos="fade-right">
+                    <div class="relative">
+                        <!-- Immagine principale con effetto 3D -->
+                        <div class="transform hover:scale-105 transition-transform duration-700 rounded-2xl shadow-2xl overflow-hidden">
+                            <img class="lazyload w-full h-auto rounded-2xl" data-src="FOTO2/casa premium xd.png" alt="NORD EDIL Team">
+                        </div>
+                        
+                        <!-- Immagini decorative che si muovono con effetto parallax -->
+                        <div class="absolute top-10 -right-10 z-0 hidden md:block transform hover:translate-x-4 hover:-translate-y-4 transition-all duration-700">
+                            <img class="lazyload w-64 h-48 object-cover rounded-lg shadow-xl" data-src="FOTO2/applicazione_resina_pavimento.jpg" alt="Progetto NORD EDIL">
+                        </div>
+                        <div class="absolute -bottom-10 -left-10 z-0 hidden md:block transform hover:-translate-x-4 hover:translate-y-4 transition-all duration-700">
+                            <img class="lazyload w-40 h-40 object-cover rounded-lg shadow-xl" data-src="FOTO2/isolamento_termico_tetto.jpg" alt="Dettaglio costruzione" width="160" height="160">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 lg:pl-16" data-aos="fade-left">
+                    <div class="lg:max-w-lg">
+                        <div class="inline-block px-3 py-1 bg-red-50 text-primary rounded-full text-sm font-semibold mb-4">
+                            Dal 2008 - Oltre 15 anni di eccellenza
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6">Chi Siamo</h2>
+                        <h3 class="text-primary text-xl font-bold mb-6">Il partner di fiducia per le costruzioni a Lugo \ RAVENNA</h3>
+                    <p class="text-gray-600 mb-6">
+                            NORD EDIL S.R.L. è il partner di fiducia per le costruzioni a Lugo \ RAVENNA. Con oltre 15 anni di successi nel settore, trasformiamo idee in realtà concrete per privati, aziende ed enti pubblici. La nostra forza? Soluzioni chiavi in mano gestite dall'idea iniziale al collaudo finale.
+                        </p>
+                        <p class="text-gray-600 mb-8">
+                            Ogni progetto porta con sé l'esperienza di centinaia di cantieri completati e la garanzia di risultati eccellenti. Edilizia intelligente che unisce tradizione italiana, innovazione tecnologica e sostenibilità ambientale. Perché la qualità non è mai un caso, ma il risultato di competenza consolidata.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="animation: fadeInUp 0.8s ease forwards;">
+                            <div class="flex flex-col items-center p-6 bg-white rounded-xl shadow-md transform hover:scale-105 hover:shadow-lg transition-all duration-300 text-center">
+                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
+                                    <i class="fas fa-medal text-primary text-2xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-1">Qualità</h4>
+                                <p class="text-gray-600">Materiali e tecniche d'eccellenza</p>
+                            </div>
+                            <div class="flex flex-col items-center p-6 bg-white rounded-xl shadow-md transform hover:scale-105 hover:shadow-lg transition-all duration-300 text-center">
+                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
+                                    <i class="fas fa-hand-holding-usd text-primary text-2xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-1">Costi Competitivi</h4>
+                                <p class="text-gray-600">Soluzioni economiche senza compromessi</p>
+                            </div>
+                            <div class="flex flex-col items-center p-6 bg-white rounded-xl shadow-md transform hover:scale-105 hover:shadow-lg transition-all duration-300 text-center">
+                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
+                                    <i class="fas fa-people-carry text-primary text-2xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-1">Esperti</h4>
+                                <p class="text-gray-600">Team qualificato e professionale</p>
+                            </div>
+                        </div>
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-sm transform hover:scale-105 transition-transform duration-300">
+                                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-handshake text-primary"></i>
+                        </div>
+                                <div>
+                                    <h4 class="font-bold">Affidabilità</h4>
+                                    <p class="text-sm text-gray-600">Rispetto di tempi e impegni</p>
+                            </div>
+                        </div>
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-sm transform hover:scale-105 transition-transform duration-300">
+                                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-lightbulb text-primary"></i>
+                    </div>
+                                <div>
+                                    <h4 class="font-bold">Innovazione</h4>
+                                    <p class="text-sm text-gray-600">Soluzioni moderne ed efficienti</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-sm transform hover:scale-105 transition-transform duration-300">
+                                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-leaf text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Sostenibilità</h4>
+                                    <p class="text-sm text-gray-600">Costruzioni a basso impatto</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#contact" class="inline-block bg-primary hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                            Contattaci
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white fade-in">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contattaci</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Compila il form per richiedere informazioni o un preventivo gratuito</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-10">
+                <div class="lg:w-1/2">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Nome <span class="text-red-500">*</span></label>
+                                <input type="text" id="name" name="name" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="surname" class="block text-gray-700 mb-2">Cognome <span class="text-red-500">*</span></label>
+                                <input type="text" id="surname" name="surname" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="email" name="email" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 mb-2">Telefono</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="+39 123 456 7890">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-gray-700 mb-2">Servizio di interesse</label>
+                            <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                                <option value="">Seleziona un servizio</option>
+                                <option value="costruzioni">Costruzioni Chiavi in Mano</option>
+                                <option value="ristrutturazioni">Ristrutturazioni Complete</option>
+                                <option value="movimento-terra">Movimento Terra</option>
+                                <option value="fognature">Fognature</option>
+                                <option value="recinzioni">Recinzioni</option>
+                                <option value="rifacimento-tetti">Rifacimento Tetti</option>
+                                <option value="pavimentazioni-resina">Pavimentazioni in Resina</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Messaggio <span class="text-red-500">*</span></label>
+                            <textarea id="message" name="message" rows="4" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300" aria-label="Invia richiesta di contatto">
+                            Invia Richiesta
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Informazioni</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-primary rounded-full p-2 mr-4">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Sede</h4>
+                                    <p class="text-gray-600">Lugo \ RAVENNA<br>Emilia-Romagna, Italia</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary rounded-full p-2 mr-4">
+                                    <i class="fas fa-phone-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Telefono</h4>
+                                    <p class="text-gray-600">+393891524993<br>0545 1920 468</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary rounded-full p-2 mr-4">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">infonordedilsrl@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary rounded-full p-2 mr-4">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Orari</h4>
+                                    <p class="text-gray-600">Lun-Ven: 8:00 - 18:00<br>Sab: 9:00 - 13:00</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Sezione Testimonianze e Recensioni Verificate -->
+    <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Clienti Soddisfatti</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Scopri cosa dicono i nostri clienti dei nostri servizi e della qualità del nostro lavoro.
+                </p>
+                <div class="mt-6 flex justify-center items-center">
+                    <div class="flex">
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    </div>
+                    <span class="ml-3 text-xl font-bold text-gray-800">4.9/5</span>
+                    <span class="ml-2 text-gray-600">(98 recensioni verificate)</span>
+                    </div>
+                    </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Recensione 1 -->
+                <div class="bg-white rounded-xl shadow-xl p-8 relative transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-4 right-4 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                        <i class="fas fa-check-circle mr-1"></i> Verificato
+                    </div>
+                    <div class="flex items-center mb-6">
+                        <img src="FOTO2/WhatsApp Image 2025-04-04 at 17.47.33 (1).jpeg" alt="Marco Bianchi" class="w-20 h-20 rounded-full border-4 border-white shadow-lg transition-transform duration-300 hover:scale-105 object-cover">
+                        <div class="ml-5">
+                            <h4 class="font-bold text-xl text-gray-800">Marco Bianchi</h4>
+                            <p class="text-gray-600 text-sm mb-2">Ristrutturazione Appartamento</p>
+                            <div class="star-rating flex space-x-1">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 relative testimonial-quote leading-relaxed">
+                        "Servizio impeccabile. La mia casa è stata ristrutturata nei tempi previsti e con grande professionalità. Tutti gli operai erano esperti e attenti ai dettagli. Consiglio vivamente NORD EDIL a chiunque cerchi qualità e affidabilità."
+                    </p>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-gray-500"><i class="far fa-calendar-alt mr-1"></i> Maggio 2023</span>
+                        <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full transition-all duration-300 hover:bg-gray-200 cursor-pointer">
+                            <i class="fas fa-thumbs-up text-primary mr-2"></i> Utile (24)
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Recensione 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 relative transition-all duration-300 hover:shadow-xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="verified-badge">
+                        <i class="fas fa-check-circle mr-1"></i> Verificato
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <img src="FOTO2/WhatsApp Image 2025-04-04 at 17.47.33 (3).jpeg" alt="Laura Rossi" class="w-16 h-16 rounded-full border-4 border-white shadow-md object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Laura Rossi</h4>
+                            <p class="text-gray-600 text-sm">Costruzione Villetta</p>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">
+                        "Abbiamo affidato a NORD EDIL la costruzione della nostra villetta e siamo rimasti pienamente soddisfatti. Grande competenza, puntualità e massima disponibilità nel seguire le nostre richieste. Il risultato finale ha superato le nostre aspettative."
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> Settembre 2023</span>
+                        <span class="flex items-center">
+                            <i class="fas fa-thumbs-up text-primary mr-1"></i> Utile (19)
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Recensione 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 relative transition-all duration-300 hover:shadow-xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="verified-badge">
+                        <i class="fas fa-check-circle mr-1"></i> Verificato
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <img src="FOTO2/WhatsApp Image 2025-04-04 at 18.03.06 (2).jpeg" alt="Antonio Verdi" class="w-16 h-16 rounded-full border-4 border-white shadow-md object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Antonio Verdi</h4>
+                            <p class="text-gray-600 text-sm">Rifacimento Tetto</p>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">
+                        "Ho scelto NORD EDIL per il rifacimento del tetto e ho trovato un team di professionisti seri ed efficienti. Lavoro eseguito a regola d'arte, con materiali di ottima qualità e rispettando tutte le normative di sicurezza."
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> Luglio 2023</span>
+                        <span class="flex items-center">
+                            <i class="fas fa-thumbs-up text-primary mr-1"></i> Utile (15)
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certificazioni e Riconoscimenti -->
+            <div class="mt-16 bg-white rounded-xl shadow-xl p-10" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-2xl font-bold text-center mb-10 relative inline-block mx-auto">
+                    <span class="relative z-10">Certificazioni e Riconoscimenti</span>
+                    <span class="absolute -bottom-2 left-0 right-0 h-1 bg-primary opacity-70 rounded-full"></span>
+                </h3>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                    <div class="text-center transform transition-all duration-300 hover:scale-110">
+                        <div class="bg-gray-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-3 shadow-md border-2 border-gray-50 transition-all duration-300 hover:shadow-lg hover:border-primary/20">
+                            <i class="fas fa-award text-primary text-3xl"></i>
+                        </div>
+                        <p class="font-semibold text-gray-800">ISO 9001</p>
+                    </div>
+                    <div class="text-center transform transition-all duration-300 hover:scale-110">
+                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-medal text-primary text-3xl"></i>
+                        </div>
+                        <p class="font-semibold text-gray-800">SOA OG1</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-leaf text-primary text-3xl"></i>
+                        </div>
+                        <p class="font-semibold text-gray-800">ISO 14001</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-shield-alt text-primary text-3xl"></i>
+                        </div>
+                        <p class="font-semibold text-gray-800">ISO 45001</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-thumbs-up text-primary text-3xl"></i>
+                        </div>
+                        <p class="font-semibold text-gray-800">Google 4.9/5</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Citazione motivazionale -->
+            <div class="mt-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="text-primary text-4xl mb-5">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="text-2xl italic text-gray-700 mb-5">
+                    "La qualità non è mai un caso, è sempre il risultato di uno sforzo intelligente."
+                </p>
+                <p class="text-gray-500 font-medium">- NORD EDIL S.R.L.</p>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <a href="#contact" class="bg-primary hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    Richiedi un preventivo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer migliorato -->
+    <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
+        <!-- Pattern decorativo -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'white\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white inline-block p-3 rounded-lg mb-4">
+                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/780a1a46b25e85d8968761c566fe22f0" alt="NORD EDIL S.R.L. Logo" class="w-16 h-auto">
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">NORD EDIL S.R.L.</h3>
+                    <p class="text-gray-400 mb-6">Professionisti nella costruzione e ristrutturazione dal progetto alla consegna, a Lugo (RA) dal 2008.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="bg-gray-800 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        <a href="#" class="bg-gray-800 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        <a href="#" class="bg-gray-800 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-6 relative">
+                        <span class="relative z-10">Link Veloci</span>
+                        <span class="absolute -bottom-1 left-0 w-10 h-1 bg-primary"></span>
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#home" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#services" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Servizi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Chi Siamo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Contatti
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-bold mb-6 relative">
+                        <span class="relative z-10">Servizi</span>
+                        <span class="absolute -bottom-1 left-0 w-10 h-1 bg-primary"></span>
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Costruzioni Chiavi in Mano
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Ristrutturazioni Complete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Movimento Terra
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Fognature
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Rifacimento Tetti
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-xl font-bold mb-6 relative">
+                        <span class="relative z-10">Contatti</span>
+                        <span class="absolute -bottom-1 left-0 w-10 h-1 bg-primary"></span>
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="bg-primary rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-200">Lugo (RA)</p>
+                                <p class="text-gray-400">Emilia-Romagna, Italia</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-primary rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-200">+393891524993</p>
+                                <p class="text-gray-400">0545 1920 468</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-primary rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-200">infonordedilsrl@gmail.com</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2023 NORD EDIL S.R.L. - Tutti i diritti riservati. P.IVA 02776000396</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="public/privacy.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:underline">Privacy Policy</a>
+                        <a href="public/cookie-policy.html" class="text-gray-400 hover:text-white transition-all duration-300 hover:underline">Cookie Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 hover:underline">Termini di Servizio</a>
+                </div>
+                <p class="mt-6 text-sm text-gray-500 max-w-2xl mx-auto">
+                    Sito sviluppato con attenzione alla sostenibilità digitale e all'efficienza energetica.
+                </p>
+                <div class="mt-6 flex justify-center items-center space-x-2">
+                    <span class="text-xs text-gray-500">Torna su</span>
+                    <a href="#home" class="w-8 h-8 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <i class="fas fa-chevron-up text-white text-xs"></i>
+                    </a>
+                </div>
+            </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Back to Top Button - Versione corretta e funzionante -->
+    <a href="#home" id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition duration-300 opacity-0 invisible transform hover:scale-110 z-50" aria-label="Torna all'inizio della pagina" role="button">
+            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </a>
+    
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 transform translate-y-full transition-transform duration-300">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex-1 mb-4 md:mb-0">
+                <p class="text-sm">
+                    Questo sito utilizza cookie per migliorare la tua esperienza di navigazione. 
+                    <a href="public/privacy.html" class="text-primary hover:underline">Privacy Policy</a> | 
+                    <a href="public/cookie-policy.html" class="text-primary hover:underline">Cookie Policy</a>
+                </p>
+            </div>
+            <div class="flex space-x-3">
+                <button id="cookie-accept" class="bg-primary hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition duration-300">
+                    Accetta tutti
+                </button>
+                <button id="cookie-reject" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm transition duration-300">
+                    Rifiuta
+                </button>
+                <button id="cookie-settings" class="bg-transparent border border-gray-400 hover:border-white text-white px-4 py-2 rounded text-sm transition duration-300">
+                    Impostazioni
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookie-modal" class="fixed inset-0 bg-black bg-opacity-50 z-60 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">Impostazioni Cookie</h3>
+                        <button id="cookie-modal-close" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-b pb-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Cookie Necessari</h4>
+                                    <p class="text-sm text-gray-600">Questi cookie sono essenziali per il funzionamento del sito.</p>
+                                </div>
+                                <input type="checkbox" checked disabled class="form-checkbox h-5 w-5 text-primary">
+                            </div>
+                        </div>
+                        
+                        <div class="border-b pb-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Cookie Analitici</h4>
+                                    <p class="text-sm text-gray-600">Ci aiutano a capire come i visitatori interagiscono con il sito.</p>
+                                </div>
+                                <input type="checkbox" id="analytics-cookies" class="form-checkbox h-5 w-5 text-primary">
+                            </div>
+                        </div>
+                        
+                        <div class="border-b pb-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Cookie di Marketing</h4>
+                                    <p class="text-sm text-gray-600">Utilizzati per tracciare i visitatori sui siti web per mostrare annunci pertinenti.</p>
+                                </div>
+                                <input type="checkbox" id="marketing-cookies" class="form-checkbox h-5 w-5 text-primary">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button id="cookie-save-settings" class="bg-primary hover:bg-red-700 text-white px-6 py-2 rounded transition duration-300">
+                            Salva Impostazioni
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript ottimizzato -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cookie Management
+            const cookieBanner = document.getElementById('cookie-banner');
+            const cookieModal = document.getElementById('cookie-modal');
+            const cookieAccept = document.getElementById('cookie-accept');
+            const cookieReject = document.getElementById('cookie-reject');
+            const cookieSettings = document.getElementById('cookie-settings');
+            const cookieModalClose = document.getElementById('cookie-modal-close');
+            const cookieSaveSettings = document.getElementById('cookie-save-settings');
+            
+            // Check if user has already made a choice
+            function checkCookieConsent() {
+                const consent = localStorage.getItem('cookie_consent');
+                if (!consent) {
+                    setTimeout(() => {
+                        cookieBanner.classList.remove('translate-y-full');
+                    }, 1000);
+                }
+            }
+            
+            // Set cookie consent
+            function setCookieConsent(type, analytics = false, marketing = false) {
+                const consent = {
+                    necessary: true,
+                    analytics: analytics,
+                    marketing: marketing,
+                    timestamp: new Date().getTime()
+                };
+                localStorage.setItem('cookie_consent', JSON.stringify(consent));
+                cookieBanner.classList.add('translate-y-full');
+                
+                // Here you would typically load/unload tracking scripts based on consent
+                if (analytics) {
+                    // Load Google Analytics or other analytics scripts
+                    console.log('Analytics cookies accepted');
+                }
+                if (marketing) {
+                    // Load marketing/advertising scripts
+                    console.log('Marketing cookies accepted');
+                }
+            }
+            
+            // Event listeners
+            cookieAccept.addEventListener('click', () => {
+                setCookieConsent('all', true, true);
+            });
+            
+            cookieReject.addEventListener('click', () => {
+                setCookieConsent('necessary', false, false);
+            });
+            
+            cookieSettings.addEventListener('click', () => {
+                cookieModal.classList.remove('hidden');
+            });
+            
+            cookieModalClose.addEventListener('click', () => {
+                cookieModal.classList.add('hidden');
+            });
+            
+            cookieSaveSettings.addEventListener('click', () => {
+                const analytics = document.getElementById('analytics-cookies').checked;
+                const marketing = document.getElementById('marketing-cookies').checked;
+                setCookieConsent('custom', analytics, marketing);
+                cookieModal.classList.add('hidden');
+            });
+            
+            // Close modal when clicking outside
+            cookieModal.addEventListener('click', (e) => {
+                if (e.target === cookieModal) {
+                    cookieModal.classList.add('hidden');
+                }
+            });
+            
+            // Initialize cookie consent check
+            checkCookieConsent();
+            
+            // Initialize AOS library for scroll animations
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Back to top button functionality - implementazione corretta
+            const backToTopButton = document.getElementById('back-to-top');
+            if (backToTopButton) {
+                // Mostra/nascondi pulsante durante lo scroll
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopButton.classList.remove('opacity-0', 'invisible');
+                        backToTopButton.classList.add('opacity-100', 'visible');
+                    } else {
+                        backToTopButton.classList.remove('opacity-100', 'visible');
+                        backToTopButton.classList.add('opacity-0', 'invisible');
+                    }
+                });
+                
+                // Evento click sul pulsante
+                backToTopButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Form submission handler con validazione e gestione errori migliorata
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                // Aggiungi validazione in tempo reale
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', function() {
+                        validateInput(this);
+                    });
+                });
+                
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Valida tutti i campi prima dell'invio
+                    let isValid = true;
+                    inputs.forEach(input => {
+                        if (!validateInput(input)) {
+                            isValid = false;
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        return false;
+                    }
+                    
+                    const formData = new FormData(contactForm);
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        message: formData.get('message')
+                    };
+                    
+                    // Disabilita il pulsante di invio durante l'elaborazione
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
+                    
+                    // Simulazione invio (in produzione, sostituire con chiamata API reale)
+                    setTimeout(() => {
+                        console.log('Form submitted:', data);
+                        
+                        // Mostra messaggio di successo
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4';
+                        successMessage.innerHTML = '<strong>Grazie!</strong> Il tuo messaggio è stato inviato con successo. Ti contatteremo al più presto.';
+                        
+                        contactForm.appendChild(successMessage);
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Ripristina il pulsante
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalText;
+                        
+                        // Rimuovi il messaggio dopo 5 secondi
+                        setTimeout(() => {
+                            successMessage.remove();
+                        }, 5000);
+                    }, 1500);
+                });
+                
+                // Funzione di validazione input
+                function validateInput(input) {
+                    const value = input.value.trim();
+                    let isValid = true;
+                    let errorMessage = '';
+                    
+                    // Rimuovi eventuali messaggi di errore precedenti
+                    const existingError = input.parentNode.querySelector('.error-message');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+                    
+                    // Validazione in base al tipo di campo
+                    if (input.required && value === '') {
+                        isValid = false;
+                        errorMessage = 'Questo campo è obbligatorio';
+                    } else if (input.type === 'email' && value !== '') {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Inserisci un indirizzo email valido';
+                        }
+                    } else if (input.name === 'phone' && value !== '') {
+                        const phoneRegex = /^[\d\s\+\-\(\)]{8,20}$/;
+                        if (!phoneRegex.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Inserisci un numero di telefono valido';
+                        }
+                    }
+                    
+                    // Mostra messaggio di errore se necessario
+                    if (!isValid) {
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'error-message text-red-500 text-sm mt-1';
+                        errorDiv.textContent = errorMessage;
+                        input.parentNode.appendChild(errorDiv);
+                        input.classList.add('border-red-500');
+                    } else {
+                        input.classList.remove('border-red-500');
+                        input.classList.add('border-green-500');
+                    }
+                    
+                    return isValid;
+                }
+            }
+            
+            // Link scorrevoli
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Chiudi il menu mobile se aperto
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                        
+                        // Scorri alla posizione
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Script semplificato - la galleria ora usa solo la visualizzazione a griglia
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Galleria NORD EDIL caricata con successo');
+        });
+    </script>
+    </body>
+</html>
