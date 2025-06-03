@@ -7,7 +7,7 @@
 const galleryImages = [];
 for (let i = 1; i <= 42; i++) {
     galleryImages.push({
-        src: `FOTO2/GALLERYX (${i}).jpeg`,
+        src: `/FOTO2/GALLERYX (${i}).jpeg`,
         alt: `Progetto NORD EDIL ${i}`,
         title: `Progetto ${i}`,
         description: `Realizzazione professionale NORD EDIL`
