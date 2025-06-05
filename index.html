@@ -1286,7 +1286,6 @@
             .gap-6 {
                  gap: 0.75rem !important;
              }
-        }
         
         /* Ottimizzazioni per dispositivi molto piccoli */
         @media (max-width: 375px) {
@@ -1847,147 +1846,396 @@
         </div>
     </section>
 
-    <!-- Modern Prima e Dopo Section -->
+    <!-- Modern Prima e Dopo Slider Section -->
     <section id="prima-dopo" class="py-20 bg-gradient-to-b from-gray-50 to-white">
         <style>
-            /* Stili personalizzati per la sezione Prima e Dopo */
-            .prima-dopo-card:hover {
-                transform: translateY(-10px);
-            }
-            .image-compare {
+            /* Stili per lo slider Prima e Dopo */
+            .prima-dopo-slider {
                 position: relative;
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow: hidden;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            }
+            
+            .slider-container {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+            }
+            
+            .slide {
+                min-width: 100%;
+                position: relative;
+                background: white;
+            }
+            
+            .slide-content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                min-height: 500px;
+            }
+            
+            .before-section, .after-section {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .before-section {
+                border-right: 3px solid #e5e7eb;
+            }
+            
+            .slide-image {
                 width: 100%;
                 height: 100%;
-            }
-            .compare-slider {
-                box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            }
-            .slider-button {
-                color: var(--color-primary, #1a56db);
+                object-fit: cover;
                 transition: transform 0.3s ease;
             }
-            .slider-button:hover {
-                transform: scale(1.1);
+            
+            .slide:hover .slide-image {
+                transform: scale(1.05);
             }
-            .after-container {
-                border-right: 2px solid white;
+            
+            .image-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0,0,0,0.4);
+                opacity: 0;
+                transition: opacity 0.3s ease;
             }
-            #view-grid.active, #view-slider.active {
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            
+            .slide:hover .image-overlay {
+                opacity: 1;
             }
+            
+            .overlay-text {
+                color: white;
+                font-size: 1.5rem;
+                font-weight: bold;
+                padding: 10px 20px;
+                border: 2px solid white;
+                border-radius: 8px;
+                background: rgba(0,0,0,0.3);
+            }
+            
+            .after-section .overlay-text {
+                background: rgba(220, 38, 38, 0.8);
+                border-color: white;
+            }
+            
+            .slide-info {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(transparent, rgba(0,0,0,0.8));
+                color: white;
+                padding: 30px 20px 20px;
+                text-align: center;
+            }
+            
+            .slide-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 8px;
+            }
+            
+            .slide-location {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                margin-bottom: 10px;
+            }
+            
+            .slide-tags {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            
+            .slide-tag {
+                background: rgba(255,255,255,0.2);
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                backdrop-filter: blur(10px);
+            }
+            
+            .slider-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255,255,255,0.9);
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                z-index: 10;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
+            
+            .slider-nav:hover {
+                background: white;
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            }
+            
+            .slider-nav.prev {
+                left: 20px;
+            }
+            
+            .slider-nav.next {
+                right: 20px;
+            }
+            
+            .slider-nav svg {
+                width: 20px;
+                height: 20px;
+                fill: #dc2626;
+            }
+            
+            .slider-dots {
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                margin-top: 30px;
+            }
+            
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #d1d5db;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .dot.active {
+                background: #dc2626;
+                transform: scale(1.2);
+            }
+            
+            .dot:hover {
+                background: #ef4444;
+            }
+            
             @media (max-width: 768px) {
-                .prima-dopo-slider {
-                    margin-bottom: 2rem;
+                .slide-content {
+                    grid-template-columns: 1fr;
+                    min-height: 600px;
+                }
+                
+                .before-section {
+                    border-right: none;
+                    border-bottom: 3px solid #e5e7eb;
+                }
+                
+                .slider-nav {
+                    width: 40px;
+                    height: 40px;
+                }
+                
+                .slider-nav.prev {
+                    left: 10px;
+                }
+                
+                .slider-nav.next {
+                    right: 10px;
+                }
+                
+                .slide-title {
+                    font-size: 1.2rem;
                 }
             }
         </style>
+        
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">Prima & Dopo</h2>
                 <div class="w-40 h-1.5 bg-gradient-to-r from-primary via-red-500 to-red-600 mx-auto mb-8 rounded-full shadow-lg"></div>
                 <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">La nostra esperienza al tuo servizio: scopri le trasformazioni che possiamo realizzare per il tuo progetto.</p>
-                <!-- Rimosso il selettore di visualizzazione, mantenendo solo la griglia -->
-
-            </div>
-            <!-- Vista a griglia -->
-            <div id="grid-view" class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-                <!-- Progetto 1 -->
-                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-6 text-center border-b border-gray-200">
-                        <h3 class="font-semibold text-gray-800 text-xl mb-2">Ristrutturazione Residenziale</h3>
-                        <p class="text-sm text-gray-500">Via dei Platani, Lugo \ RAVENNA</p>
-                        <div class="mt-2 flex justify-center space-x-2">
-                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Residenziale</span>
-                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2023</span>
-                        </div>
-                     </div>
-                    <div class="grid grid-cols-2 gap-0 flex-grow">
-                        <div class="relative group border-r border-gray-100">
-                            <img src="FOTO2/PRIMA 1.jpeg" alt="Prima - Progetto 1" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <img src="FOTO2/DOPO 1.jpeg" alt="Dopo - Progetto 1" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                            <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
-                            </div>
-                        </div>
-                   </div>
-                   <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <p class="text-sm text-gray-600 italic">"Completa ristrutturazione con rinnovamento degli interni e miglioramento energetico"</p>
-                   </div>
-                </div>
-
-                <!-- Progetto 2 -->
-                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-6 text-center border-b border-gray-200">
-                        <h3 class="font-semibold text-gray-800 text-xl mb-2">Ampliamento Esterno</h3>
-                        <p class="text-sm text-gray-500">Località San Lorenzo, Lugo (RA)</p>
-                        <div class="mt-2 flex justify-center space-x-2">
-                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Commerciale</span>
-                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2022</span>
-                        </div>
-                    </div>
-                   <div class="grid grid-cols-2 gap-0 flex-grow">
-                        <div class="relative group border-r border-gray-100">
-                            <img src="FOTO2/PRIMA 2.jpeg" alt="Prima - Progetto 2" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <img src="FOTO2/DOPO 2.jpeg" alt="Dopo - Progetto 2" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                            <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <p class="text-sm text-gray-600 italic">"Ampliamento della struttura esistente con nuovi spazi funzionali e moderni"</p>
-                    </div>
-                </div>
-
-                <!-- Progetto 3 -->
-                <div class="prima-dopo-card bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                     <div class="p-6 text-center border-b border-gray-200">
-                        <h3 class="font-semibold text-gray-800 text-xl mb-2">RIFACIMENTO TETTI</h3>
-                         <p class="text-sm text-gray-500">Zona Industriale, Lugo (RA)</p>
-                         <div class="mt-2 flex justify-center space-x-2">
-                            <span class="px-2 py-1 bg-gray-100 text-xs rounded-full text-gray-700">Industriale</span>
-                            <span class="px-2 py-1 bg-primary bg-opacity-10 text-xs rounded-full text-primary">2023</span>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-0 flex-grow">
-                        <div class="relative group border-r border-gray-100">
-                            <img src="FOTO2/tetto prima.jpeg" alt="Prima - Rifacimento Tetti" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">PRIMA</span>
-                            </div>
-                        </div>
-                        <div class="relative group">
-                            <!-- Usiamo object-contain per png trasparenti o con dimensioni diverse -->
-                            <img src="FOTO2/tetto dopo.jpeg" alt="Dopo - Rifacimento Tetti" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110 aspect-square">
-                             <div class="absolute inset-0 bg-primary bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-white text-xl font-bold border-2 border-white px-3 py-1 rounded">DOPO</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-gray-50 border-t border-gray-100">
-                        <p class="text-sm text-gray-600 italic">"Intervento completo di rifacimento tetto con materiali innovativi e tecniche avanzate"</p>
-                    </div>
-                </div>
-
-
             </div>
             
-            <!-- Rimossa la vista slider, mantenendo solo la griglia -->
+            <!-- Slider Prima e Dopo -->
+            <div class="prima-dopo-slider" data-aos="fade-up">
+                <div class="slider-container" id="sliderContainer">
+                    <!-- Slide 1: Ristrutturazione Residenziale -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="before-section">
+                                <img src="FOTO2/PRIMA 1.jpeg" alt="Prima - Ristrutturazione Residenziale" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">PRIMA</div>
+                                </div>
+                            </div>
+                            <div class="after-section">
+                                <img src="FOTO2/DOPO 1.jpeg" alt="Dopo - Ristrutturazione Residenziale" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">DOPO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-title">Ristrutturazione Residenziale</div>
+                            <div class="slide-location">Via dei Platani, Lugo \ RAVENNA</div>
+                            <div class="slide-tags">
+                                <span class="slide-tag">Residenziale</span>
+                                <span class="slide-tag">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2: Ampliamento Esterno -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="before-section">
+                                <img src="FOTO2/PRIMA 2.jpeg" alt="Prima - Ampliamento Esterno" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">PRIMA</div>
+                                </div>
+                            </div>
+                            <div class="after-section">
+                                <img src="FOTO2/DOPO 2.jpeg" alt="Dopo - Ampliamento Esterno" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">DOPO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-title">Ampliamento Esterno</div>
+                            <div class="slide-location">Località San Lorenzo, Lugo (RA)</div>
+                            <div class="slide-tags">
+                                <span class="slide-tag">Commerciale</span>
+                                <span class="slide-tag">2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3: Rifacimento Tetti -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="before-section">
+                                <img src="FOTO2/tetto prima.jpeg" alt="Prima - Rifacimento Tetti" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">PRIMA</div>
+                                </div>
+                            </div>
+                            <div class="after-section">
+                                <img src="FOTO2/tetto dopo.jpeg" alt="Dopo - Rifacimento Tetti" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">DOPO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-title">Rifacimento Tetti</div>
+                            <div class="slide-location">Zona Industriale, Lugo (RA)</div>
+                            <div class="slide-tags">
+                                <span class="slide-tag">Industriale</span>
+                                <span class="slide-tag">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controlli di navigazione -->
+                <button class="slider-nav prev" onclick="changeSlide(-1)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button class="slider-nav next" onclick="changeSlide(1)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Indicatori (dots) -->
+            <div class="slider-dots">
+                <div class="dot active" onclick="currentSlide(1)"></div>
+                <div class="dot" onclick="currentSlide(2)"></div>
+                <div class="dot" onclick="currentSlide(3)"></div>
+            </div>
             
             <div class="text-center mt-12" data-aos="fade-up">
                 <p class="text-lg text-gray-700">Hai un progetto simile? <a href="#contact" class="text-primary font-semibold hover:underline">Contattaci ora!</a></p>
             </div>
         </div>
+        
+        <script>
+            // JavaScript per lo slider Prima e Dopo
+            let currentSlideIndex = 0;
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const sliderContainer = document.getElementById('sliderContainer');
+            
+            function showSlide(index) {
+                // Assicurati che l'indice sia valido
+                if (index >= slides.length) currentSlideIndex = 0;
+                if (index < 0) currentSlideIndex = slides.length - 1;
+                
+                // Muovi il container
+                sliderContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                
+                // Aggiorna i dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlideIndex);
+                });
+            }
+            
+            function changeSlide(direction) {
+                currentSlideIndex += direction;
+                showSlide(currentSlideIndex);
+            }
+            
+            function currentSlide(index) {
+                currentSlideIndex = index - 1;
+                showSlide(currentSlideIndex);
+            }
+            
+            // Auto-play dello slider (opzionale)
+            setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+            
+            // Supporto per swipe su mobile
+            let startX = 0;
+            let endX = 0;
+            
+            sliderContainer.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            
+            sliderContainer.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const threshold = 50;
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        changeSlide(1); // Swipe left - next slide
+                    } else {
+                        changeSlide(-1); // Swipe right - previous slide
+                    }
+                }
+            }
+        </script>
     </section>
 
     <!-- Sezione Galleria Foto -->
@@ -2514,8 +2762,11 @@
                         </h3>
                         <div class="space-y-8">
                             <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
-                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-map-marker-alt text-white text-lg"></i>
+                                <div class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946" stroke-width="1.5"/>
+                                        <path d="M12 6c-2.2 0-4 1.8-4 4 0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#e63946"/>
+                                    </svg>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-gray-800 text-lg mb-1">Sede Operativa</h4>
@@ -2523,8 +2774,13 @@
                                 </div>
                             </div>
                             <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
-                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-phone-alt text-white text-lg"></i>
+                                <div class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946" stroke-width="1.5"/>
+                                        <path d="M17 15.5c-1.2 1-2.4 1.5-3.5 1.5-2.2 0-4-1.8-4-4 0-1.1 0.5-2.3 1.5-3.5L9.5 8c-1.4 1.5-2 3.3-2 5 0 3.9 3.1 7 7 7 1.7 0 3.5-0.6 5-2l-1.5-1.5z" fill="#e63946"/>
+                                        <path d="M14.5 15.5c-0.7 0.7-1.5 1-2.5 1-1.9 0-3.5-1.6-3.5-3.5 0-1 0.3-1.8 1-2.5L8 9c-1.2 1.2-1.5 2.6-1.5 4 0 3 2.5 5.5 5.5 5.5 1.4 0 2.8-0.3 4-1.5l-1.5-1.5z" fill="#333"/>
+                                        <path d="M13.5 2.5c0 0 1 0.5 2 1.5s1.5 2 1.5 2l-2.5 2.5c0 0-0.5-1-1.5-2s-2-1.5-2-1.5l2.5-2.5z" fill="#e63946"/>
+                                    </svg>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-gray-800 text-lg mb-1">Telefono</h4>
@@ -2532,8 +2788,14 @@
                                 </div>
                             </div>
                             <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
-                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-envelope text-white text-lg"></i>
+                                <div class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946" stroke-width="1.5"/>
+                                        <path d="M5 8v8c0 0.6 0.4 1 1 1h12c0.6 0 1-0.4 1-1V8c0-0.6-0.4-1-1-1H6C5.4 7 5 7.4 5 8z" fill="white" stroke="#e63946" stroke-width="1.2"/>
+                                        <path d="M5 9l7 5 7-5" fill="none" stroke="#e63946" stroke-width="1.2"/>
+                                        <path d="M5 15l5-3.5" fill="none" stroke="#333" stroke-width="0.8"/>
+                                        <path d="M19 15l-5-3.5" fill="none" stroke="#333" stroke-width="0.8"/>
+                                    </svg>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-gray-800 text-lg mb-1">Email</h4>
@@ -2541,8 +2803,16 @@
                                 </div>
                             </div>
                             <div class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
-                                <div class="bg-gradient-to-r from-primary to-red-700 rounded-full p-3 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-clock text-white text-lg"></i>
+                                <div class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946" stroke-width="1.5"/>
+                                        <circle cx="12" cy="12" r="7" fill="white" stroke="#e63946" stroke-width="1.2"/>
+                                        <path d="M12 8v4l3 3" stroke="#333" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                        <path d="M12 5v1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round"/>
+                                        <path d="M12 18v1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round"/>
+                                        <path d="M5 12h1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round"/>
+                                        <path d="M18 12h1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round"/>
+                                    </svg>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-gray-800 text-lg mb-1">Orari di Lavoro</h4>
