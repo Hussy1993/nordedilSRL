@@ -26,6 +26,9 @@
     <!-- Lazy loading immagini -->
     <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
     
+    <!-- EmailJS per invio email -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
     <!-- Script non critici caricati in modo differito -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
@@ -53,6 +56,16 @@
     <!-- Importa i file JavaScript con Vite -->
     <script type="module" src="./main.js"></script>
     <script>
+        // Inizializzazione EmailJS
+        emailjs.init({
+            publicKey: 'YOUR_PUBLIC_KEY', // Sostituire con la chiave pubblica di EmailJS
+            blockHeadless: true,
+            limitRate: {
+                id: 'app',
+                throttle: 10000,
+            },
+        });
+        
         document.addEventListener('DOMContentLoaded', function () {
             // Inizializzazione Swiper per i loghi dei clienti
             if (document.querySelector('.client-logo-slider')) {
@@ -3603,8 +3616,10 @@
                     const formData = new FormData(contactForm);
                     const data = {
                         name: formData.get('name'),
+                        surname: formData.get('surname'),
                         email: formData.get('email'),
                         phone: formData.get('phone'),
+                        service: formData.get('service'),
                         message: formData.get('message')
                     };
                     
@@ -3614,14 +3629,23 @@
                     submitButton.disabled = true;
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
                     
-                    // Simulazione invio (in produzione, sostituire con chiamata API reale)
-                    setTimeout(() => {
-                        console.log('Form submitted:', data);
+                    // Invio email tramite EmailJS
+                    emailjs.send('service_nordedil', 'template_nordedil', {
+                        to_email: 'infonordedilsrl@gmail.com',
+                        from_name: data.name + ' ' + (formData.get('surname') || ''),
+                        from_email: data.email,
+                        phone: data.phone || 'Non specificato',
+                        service: formData.get('service') || 'Non specificato',
+                        message: data.message,
+                        reply_to: data.email
+                    })
+                    .then(() => {
+                        console.log('Email inviata con successo!');
                         
                         // Mostra messaggio di successo
                         const successMessage = document.createElement('div');
                         successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4';
-                        successMessage.innerHTML = '<strong>Grazie!</strong> Il tuo messaggio è stato inviato con successo. Ti contatteremo al più presto.';
+                        successMessage.innerHTML = '<strong>Grazie!</strong> Il tuo messaggio è stato inviato con successo a infonordedilsrl@gmail.com. Ti contatteremo al più presto.';
                         
                         contactForm.appendChild(successMessage);
                         
@@ -3636,7 +3660,26 @@
                         setTimeout(() => {
                             successMessage.remove();
                         }, 5000);
-                    }, 1500);
+                    })
+                    .catch((error) => {
+                        console.error('Errore nell\'invio dell\'email:', error);
+                        
+                        // Mostra messaggio di errore
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4';
+                        errorMessage.innerHTML = '<strong>Errore!</strong> Si è verificato un problema nell\'invio del messaggio. Riprova più tardi o contattaci direttamente a infonordedilsrl@gmail.com.';
+                        
+                        contactForm.appendChild(errorMessage);
+                        
+                        // Ripristina il pulsante
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalText;
+                        
+                        // Rimuovi il messaggio dopo 7 secondi
+                        setTimeout(() => {
+                            errorMessage.remove();
+                        }, 7000);
+                    });
                 });
                 
                 // Funzione di validazione input
