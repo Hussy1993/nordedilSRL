@@ -1053,10 +1053,103 @@
                 margin-bottom: 80px; /* Evita sovrapposizione footer */
             }
             
-            /* Cookie banner mobile-friendly */
+            /* Cookie banner mobile-friendly ottimizzato */
             #cookie-banner {
                 bottom: 160px !important;
                 z-index: 997 !important;
+                padding: 16px !important;
+                backdrop-filter: blur(15px) !important;
+                background: rgba(17, 24, 39, 0.95) !important;
+                border-top: 2px solid rgba(220, 38, 38, 0.3) !important;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3) !important;
+            }
+            
+            #cookie-banner .container {
+                flex-direction: column !important;
+                gap: 16px !important;
+                max-width: 100% !important;
+            }
+            
+            #cookie-banner p {
+                font-size: 15px !important;
+                line-height: 1.5 !important;
+                margin-bottom: 0 !important;
+                text-align: center !important;
+                color: #f3f4f6 !important;
+            }
+            
+            #cookie-banner .flex {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 12px !important;
+            }
+            
+            #cookie-banner button {
+                width: 100% !important;
+                min-height: 48px !important;
+                font-size: 15px !important;
+                font-weight: 700 !important;
+                border-radius: 12px !important;
+                transition: all 0.3s ease !important;
+                border: none !important;
+                cursor: pointer !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.5px !important;
+            }
+            
+            /* Pulsanti sempre visibili e ottimizzati per mobile */
+            #cookie-accept {
+                background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+                color: white !important;
+                box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4) !important;
+            }
+            
+            #cookie-accept:active {
+                transform: translateY(1px) !important;
+                box-shadow: 0 2px 8px rgba(220, 38, 38, 0.5) !important;
+            }
+            
+            #cookie-reject {
+                background: linear-gradient(135deg, #4b5563, #374151) !important;
+                color: white !important;
+                box-shadow: 0 4px 12px rgba(75, 85, 99, 0.4) !important;
+            }
+            
+            #cookie-reject:active {
+                transform: translateY(1px) !important;
+                box-shadow: 0 2px 8px rgba(75, 85, 99, 0.5) !important;
+            }
+            
+            #cookie-settings {
+                background: transparent !important;
+                border: 2px solid #9ca3af !important;
+                color: #f3f4f6 !important;
+                box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3) !important;
+            }
+            
+            #cookie-settings:active {
+                transform: translateY(1px) !important;
+                background: rgba(156, 163, 175, 0.1) !important;
+                border-color: #f3f4f6 !important;
+            }
+            
+            /* Link policy ottimizzati per mobile */
+            #cookie-banner a {
+                color: #fca5a5 !important;
+                text-decoration: underline !important;
+                font-weight: 600 !important;
+                font-size: 14px !important;
+            }
+            
+            #cookie-banner a:active {
+                color: #f87171 !important;
+            }
+            
+            #cookie-settings {
+                background: transparent !important;
+                border: 2px solid #9ca3af !important;
+                color: white !important;
+                box-shadow: 0 2px 4px rgba(156, 163, 175, 0.2) !important;
             }
         }
         
@@ -2747,9 +2840,11 @@
                             <label for="message" class="block text-gray-700 font-medium mb-2">Messaggio <span class="text-primary">*</span></label>
                             <textarea id="message" name="message" rows="5" required aria-required="true" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 resize-none" placeholder="Descrivi il tuo progetto o richiesta..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-red-700 hover:from-red-700 hover:to-primary text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center" aria-label="Invia richiesta di contatto">
-                            <i class="fas fa-paper-plane mr-2"></i>
-                            Invia Richiesta
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-red-700 text-white font-bold py-5 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center border-2 border-red-600 relative overflow-hidden group" aria-label="Invia richiesta di contatto" style="background: linear-gradient(135deg, #dc2626, #b91c1c) !important; box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4) !important; min-height: 60px !important;">
+                            <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <i class="fas fa-paper-plane mr-3 text-lg relative z-10"></i>
+                            <span class="text-lg font-extrabold uppercase tracking-wide relative z-10">Invia Richiesta</span>
+                            <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                         </button>
                     </form>
                 </div>
@@ -3177,22 +3272,82 @@
     
     <!-- Cookie Banner -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 transform translate-y-full transition-transform duration-300">
+        <style>
+            /* Stili per cookie banner ottimizzati */
+            #cookie-banner {
+                backdrop-filter: blur(10px);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            /* Pulsanti sempre visibili anche su desktop */
+            #cookie-accept {
+                background: #dc2626 !important;
+                color: white !important;
+                box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+                font-weight: 600;
+            }
+            
+            #cookie-accept:hover {
+                background: #b91c1c !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+            }
+            
+            #cookie-reject {
+                background: #4b5563 !important;
+                color: white !important;
+                box-shadow: 0 2px 8px rgba(75, 85, 99, 0.3);
+                font-weight: 600;
+            }
+            
+            #cookie-reject:hover {
+                background: #374151 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(75, 85, 99, 0.4);
+            }
+            
+            #cookie-settings {
+                background: transparent !important;
+                border: 2px solid #9ca3af !important;
+                color: white !important;
+                box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
+                font-weight: 600;
+            }
+            
+            #cookie-settings:hover {
+                border-color: white !important;
+                background: rgba(255, 255, 255, 0.1) !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);
+            }
+            
+            /* Link policy sempre visibili */
+            #cookie-banner a {
+                color: #fca5a5 !important;
+                text-decoration: underline;
+                font-weight: 500;
+            }
+            
+            #cookie-banner a:hover {
+                color: #f87171 !important;
+            }
+        </style>
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <div class="flex-1 mb-4 md:mb-0">
                 <p class="text-sm">
                     Questo sito utilizza cookie per migliorare la tua esperienza di navigazione. 
-                    <a href="public/privacy.html" class="text-primary hover:underline">Privacy Policy</a> | 
-                    <a href="public/cookie-policy.html" class="text-primary hover:underline">Cookie Policy</a>
+                    <a href="public/privacy.html">Privacy Policy</a> | 
+                    <a href="public/cookie-policy.html">Cookie Policy</a>
                 </p>
             </div>
             <div class="flex space-x-3">
-                <button id="cookie-accept" class="bg-primary hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition duration-300">
+                <button id="cookie-accept" class="px-4 py-2 rounded text-sm transition duration-300">
                     Accetta tutti
                 </button>
-                <button id="cookie-reject" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm transition duration-300">
+                <button id="cookie-reject" class="px-4 py-2 rounded text-sm transition duration-300">
                     Rifiuta
                 </button>
-                <button id="cookie-settings" class="bg-transparent border border-gray-400 hover:border-white text-white px-4 py-2 rounded text-sm transition duration-300">
+                <button id="cookie-settings" class="px-4 py-2 rounded text-sm transition duration-300">
                     Impostazioni
                 </button>
             </div>
