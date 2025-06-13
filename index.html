@@ -26,8 +26,7 @@
     <!-- Lazy loading immagini -->
     <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
     
-    <!-- EmailJS per invio email -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Sistema di invio email diretto senza servizi di terze parti -->
     
     <!-- Script non critici caricati in modo differito -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
@@ -56,15 +55,8 @@
     <!-- Importa i file JavaScript con Vite -->
     <script type="module" src="./main.js"></script>
     <script>
-        // Inizializzazione EmailJS
-        emailjs.init({
-            publicKey: 'YOUR_PUBLIC_KEY', // Sostituire con la chiave pubblica di EmailJS
-            blockHeadless: true,
-            limitRate: {
-                id: 'app',
-                throttle: 10000,
-            },
-        });
+        // Sistema di invio email diretto - nessuna inizializzazione richiesta
+        console.log('Sistema email diretto attivato - mailto integrato');
         
         document.addEventListener('DOMContentLoaded', function () {
             // Inizializzazione Swiper per i loghi dei clienti
@@ -3994,57 +3986,70 @@
                     submitButton.disabled = true;
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
                     
-                    // Invio email tramite EmailJS
-                    emailjs.send('service_nordedil', 'template_nordedil', {
-                        to_email: 'infonordedilsrl@gmail.com',
-                        from_name: data.name + ' ' + (formData.get('surname') || ''),
-                        from_email: data.email,
-                        phone: data.phone || 'Non specificato',
-                        service: formData.get('service') || 'Non specificato',
-                        message: data.message,
-                        reply_to: data.email
-                    })
-                    .then(() => {
-                        console.log('Email inviata con successo!');
-                        
-                        // Mostra messaggio di successo
-                        const successMessage = document.createElement('div');
-                        successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4';
-                        successMessage.innerHTML = '<strong>Grazie!</strong> Il tuo messaggio è stato inviato con successo a infonordedilsrl@gmail.com. Ti contatteremo al più presto.';
-                        
-                        contactForm.appendChild(successMessage);
-                        
-                        // Reset form
-                        contactForm.reset();
-                        
-                        // Ripristina il pulsante
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalText;
-                        
-                        // Rimuovi il messaggio dopo 5 secondi
-                        setTimeout(() => {
+                    // Invio email diretto tramite mailto (senza servizi di terze parti)
+                    const emailSubject = encodeURIComponent(`Richiesta di contatto da ${data.name} ${data.surname || ''}`);
+                    const emailBody = encodeURIComponent(
+                        `Dettagli del contatto:\n\n` +
+                        `Nome: ${data.name} ${data.surname || ''}\n` +
+                        `Email: ${data.email}\n` +
+                        `Telefono: ${data.phone || 'Non specificato'}\n` +
+                        `Servizio di interesse: ${data.service || 'Non specificato'}\n\n` +
+                        `Messaggio:\n${data.message}\n\n` +
+                        `---\n` +
+                        `Questa email è stata generata automaticamente dal sito web NORD EDIL S.R.L.\n` +
+                        `Data e ora: ${new Date().toLocaleString('it-IT')}`
+                    );
+                    
+                    const mailtoLink = `mailto:infonordedilsrl@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+                    
+                    // Apri il client email predefinito
+                    window.location.href = mailtoLink;
+                    
+                    // Mostra messaggio di successo
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4';
+                    successMessage.innerHTML = '<strong>Perfetto!</strong> Il tuo client email si è aperto con il messaggio precompilato. Invia l\'email per completare la richiesta di contatto a <strong>infonordedilsrl@gmail.com</strong>.';
+                    
+                    contactForm.appendChild(successMessage);
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Ripristina il pulsante
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+                    
+                    // Rimuovi il messaggio dopo 8 secondi
+                    setTimeout(() => {
+                        if (successMessage.parentNode) {
                             successMessage.remove();
-                        }, 5000);
-                    })
-                    .catch((error) => {
-                        console.error('Errore nell\'invio dell\'email:', error);
+                        }
+                    }, 8000);
+                    
+                    // Aggiungi anche un fallback per dispositivi mobili o situazioni dove mailto potrebbe non funzionare
+                    setTimeout(() => {
+                        const fallbackMessage = document.createElement('div');
+                        fallbackMessage.className = 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mt-4';
+                        fallbackMessage.innerHTML = `
+                            <strong>Alternativa:</strong> Se il client email non si è aperto, puoi copiare questi dati e inviarli manualmente a <strong>infonordedilsrl@gmail.com</strong>:<br><br>
+                            <div class="bg-white p-3 rounded border text-sm font-mono">
+                                <strong>Nome:</strong> ${data.name} ${data.surname || ''}<br>
+                                <strong>Email:</strong> ${data.email}<br>
+                                <strong>Telefono:</strong> ${data.phone || 'Non specificato'}<br>
+                                <strong>Servizio:</strong> ${data.service || 'Non specificato'}<br>
+                                <strong>Messaggio:</strong> ${data.message}
+                            </div>
+                        `;
                         
-                        // Mostra messaggio di errore
-                        const errorMessage = document.createElement('div');
-                        errorMessage.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4';
-                        errorMessage.innerHTML = '<strong>Errore!</strong> Si è verificato un problema nell\'invio del messaggio. Riprova più tardi o contattaci direttamente a infonordedilsrl@gmail.com.';
+                        contactForm.appendChild(fallbackMessage);
                         
-                        contactForm.appendChild(errorMessage);
-                        
-                        // Ripristina il pulsante
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalText;
-                        
-                        // Rimuovi il messaggio dopo 7 secondi
+                        // Rimuovi il messaggio fallback dopo 15 secondi
                         setTimeout(() => {
-                            errorMessage.remove();
-                        }, 7000);
-                    });
+                            if (fallbackMessage.parentNode) {
+                                fallbackMessage.remove();
+                            }
+                        }, 15000);
+                    }, 3000);
                 });
                 
                 // Funzione di validazione input
