@@ -134,12 +134,19 @@ function openLightbox(index) {
                     <div class="flex items-center space-x-4">
                         <span id="lightbox-counter" class="text-sm opacity-75"></span>
                     </div>
-                    <button id="close-lightbox" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all duration-200">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    <button id="close-lightbox" class="w-12 h-12 md:w-10 md:h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all duration-200 text-white font-bold text-lg">
+                        <svg class="w-8 h-8 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
+                
+                <!-- Pulsante di chiusura mobile aggiuntivo -->
+                <button id="close-lightbox-mobile" class="md:hidden fixed top-4 right-4 z-60 w-14 h-14 rounded-full bg-red-600 bg-opacity-90 flex items-center justify-center text-white shadow-lg hover:bg-opacity-100 transition-all duration-200">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
                 
                 <!-- Contenitore immagine principale -->
                 <div class="flex-1 flex items-center justify-center relative">
@@ -171,6 +178,7 @@ function openLightbox(index) {
         
         // Gestione eventi del lightbox
         document.getElementById('close-lightbox').addEventListener('click', closeLightbox);
+        document.getElementById('close-lightbox-mobile').addEventListener('click', closeLightbox);
         document.getElementById('prev-lightbox').addEventListener('click', showPrevImage);
         document.getElementById('next-lightbox').addEventListener('click', showNextImage);
         
