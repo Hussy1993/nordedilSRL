@@ -26,7 +26,8 @@
     <!-- Lazy loading immagini -->
     <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
     
-    <!-- Sistema di invio email diretto senza servizi di terze parti -->
+    <!-- EmailJS per l'invio di email -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
     <!-- Script non critici caricati in modo differito -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
@@ -55,8 +56,11 @@
     <!-- Importa i file JavaScript con Vite -->
     <script type="module" src="./main.js"></script>
     <script>
-        // Sistema di invio email diretto - nessuna inizializzazione richiesta
-        console.log('Sistema email diretto attivato - mailto integrato');
+        // Inizializzazione EmailJS
+        (function(){
+            emailjs.init("YOUR_PUBLIC_KEY"); // Sostituire con la tua chiave pubblica EmailJS
+        })();
+        console.log('EmailJS inizializzato correttamente');
         
         document.addEventListener('DOMContentLoaded', function () {
             // Inizializzazione Swiper per i loghi dei clienti
@@ -3986,81 +3990,93 @@
                     submitButton.disabled = true;
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
                     
-                    // Invio email diretto tramite mailto (senza servizi di terze parti)
-                    const emailSubject = encodeURIComponent(`Richiesta di contatto da ${data.name} ${data.surname || ''}`);
-                    const emailBody = encodeURIComponent(
-                        `Dettagli del contatto:\n\n` +
-                        `Nome: ${data.name} ${data.surname || ''}\n` +
-                        `Email: ${data.email}\n` +
-                        `Telefono: ${data.phone || 'Non specificato'}\n` +
-                        `Servizio di interesse: ${data.service || 'Non specificato'}\n\n` +
-                        `Messaggio:\n${data.message}\n\n` +
-                        `---\n` +
-                        `Questa email è stata generata automaticamente dal sito web NORD EDIL S.R.L.\n` +
-                        `Data e ora: ${new Date().toLocaleString('it-IT')}`
-                    );
+                    // Invio email tramite EmailJS
+                    const templateParams = {
+                        from_name: `${data.name} ${data.surname || ''}`,
+                        from_email: data.email,
+                        phone: data.phone || 'Non specificato',
+                        service: data.service || 'Non specificato',
+                        message: data.message,
+                        to_email: 'infonordedilsrl@gmail.com'
+                    };
                     
-                    const mailtoLink = `mailto:infonordedilsrl@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+                    // Invio tramite EmailJS
+                    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                        .then(function(response) {
+                            console.log('Email inviata con successo!', response.status, response.text);
+                            
+                            // Mostra messaggio di successo
+                            showSuccessMessage(data);
+                            
+                            // Reset form
+                            contactForm.reset();
+                            
+                            // Ripristina il pulsante
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = originalText;
+                            
+                        }, function(error) {
+                            console.error('Errore nell\'invio dell\'email:', error);
+                            
+                            // Mostra messaggio di errore
+                            showErrorMessage();
+                            
+                            // Ripristina il pulsante
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = originalText;
+                        });
                     
-                    // Apri il client email predefinito
-                    window.location.href = mailtoLink;
+                });
+                
+                // Funzione per mostrare messaggio di successo
+                function showSuccessMessage(data) {
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4';
+                    successMessage.innerHTML = '<strong>Perfetto!</strong> La tua richiesta è stata inviata con successo a <strong>NORD EDIL S.R.L.</strong> Riceverai una risposta entro 24 ore lavorative.';
                     
-                    // Mostra messaggio di successo con notifica professionale
-                     const successMessage = document.createElement('div');
-                     successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4';
-                     successMessage.innerHTML = '<strong>Perfetto!</strong> Il tuo client email si è aperto con il messaggio precompilato. Invia l\'email per completare la richiesta di contatto a <strong>infonordedilsrl@gmail.com</strong>.';
+                    contactForm.appendChild(successMessage);
                      
-                     contactForm.appendChild(successMessage);
-                     
-                     // Aggiungi notifica di risposta automatica professionale
-                     setTimeout(() => {
-                         const autoReplyNotification = document.createElement('div');
-                         autoReplyNotification.className = 'bg-blue-50 border border-blue-300 text-blue-800 px-4 py-3 rounded relative mt-4';
-                         autoReplyNotification.innerHTML = `
-                             <div class="flex items-start">
-                                 <div class="flex-shrink-0">
-                                     <i class="fas fa-info-circle text-blue-500 text-lg mt-1"></i>
-                                 </div>
-                                 <div class="ml-3">
-                                     <h4 class="text-sm font-bold text-blue-800 mb-2">📧 Notifica di Ricezione Automatica</h4>
-                                     <div class="text-sm text-blue-700 bg-white p-3 rounded border-l-4 border-blue-400">
-                                         <p class="font-semibold mb-2">Gentile ${data.name} ${data.surname || ''},</p>
-                                         <p class="mb-2">Grazie per aver contattato <strong>NORD EDIL S.R.L.</strong></p>
-                                         <p class="mb-2">Abbiamo ricevuto la sua richiesta di contatto e la confermiamo che sarà elaborata nel più breve tempo possibile.</p>
-                                         <div class="bg-gray-50 p-2 rounded mt-3 mb-3">
-                                             <p class="text-xs text-gray-600 mb-1"><strong>Dettagli della richiesta:</strong></p>
-                                             <p class="text-xs">• Servizio: ${data.service || 'Consulenza generale'}</p>
-                                             <p class="text-xs">• Data richiesta: ${new Date().toLocaleDateString('it-IT')}</p>
-                                             <p class="text-xs">• Orario: ${new Date().toLocaleTimeString('it-IT')}</p>
-                                         </div>
-                                         <p class="mb-2"><strong>Tempi di risposta:</strong> Entro 24 ore lavorative</p>
-                                         <p class="mb-2"><strong>Contatti diretti:</strong></p>
-                                         <p class="text-xs">📞 Tel: +39 392 028 8504</p>
-                                         <p class="text-xs">📧 Email: infonordedilsrl@gmail.com</p>
-                                         <p class="text-xs">📍 Sede: Lugo, Ravenna</p>
-                                         <hr class="my-2 border-gray-300">
-                                         <p class="text-xs text-gray-500 italic">Cordiali saluti,<br>Il Team di NORD EDIL S.R.L.<br><em>"La qualità che costruisce il futuro"</em></p>
-                                     </div>
-                                 </div>
-                             </div>
-                         `;
-                         
-                         contactForm.appendChild(autoReplyNotification);
-                         
-                         // Rimuovi la notifica automatica dopo 20 secondi
-                         setTimeout(() => {
-                             if (autoReplyNotification.parentNode) {
-                                 autoReplyNotification.remove();
-                             }
-                         }, 20000);
-                     }, 2000);
-                    
-                    // Reset form
-                    contactForm.reset();
-                    
-                    // Ripristina il pulsante
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = originalText;
+                    // Aggiungi notifica di risposta automatica professionale
+                    setTimeout(() => {
+                        const autoReplyNotification = document.createElement('div');
+                        autoReplyNotification.className = 'bg-blue-50 border border-blue-300 text-blue-800 px-4 py-3 rounded relative mt-4';
+                        autoReplyNotification.innerHTML = `
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-info-circle text-blue-500 text-lg mt-1"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-sm font-bold text-blue-800 mb-2">📧 Conferma di Invio</h4>
+                                    <div class="text-sm text-blue-700 bg-white p-3 rounded border-l-4 border-blue-400">
+                                        <p class="font-semibold mb-2">Gentile ${data.name} ${data.surname || ''},</p>
+                                        <p class="mb-2">La sua richiesta è stata inviata con successo a <strong>NORD EDIL S.R.L.</strong></p>
+                                        <div class="bg-gray-50 p-2 rounded mt-3 mb-3">
+                                            <p class="text-xs text-gray-600 mb-1"><strong>Dettagli della richiesta:</strong></p>
+                                            <p class="text-xs">• Servizio: ${data.service || 'Consulenza generale'}</p>
+                                            <p class="text-xs">• Data invio: ${new Date().toLocaleDateString('it-IT')}</p>
+                                            <p class="text-xs">• Orario: ${new Date().toLocaleTimeString('it-IT')}</p>
+                                        </div>
+                                        <p class="mb-2"><strong>Tempi di risposta:</strong> Entro 24 ore lavorative</p>
+                                        <p class="mb-2"><strong>Contatti diretti:</strong></p>
+                                        <p class="text-xs">📞 Tel: +39 392 028 8504</p>
+                                        <p class="text-xs">📧 Email: infonordedilsrl@gmail.com</p>
+                                        <p class="text-xs">📍 Sede: Lugo, Ravenna</p>
+                                        <hr class="my-2 border-gray-300">
+                                        <p class="text-xs text-gray-500 italic">Cordiali saluti,<br>Il Team di NORD EDIL S.R.L.<br><em>"La qualità che costruisce il futuro"</em></p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        contactForm.appendChild(autoReplyNotification);
+                        
+                        // Rimuovi la notifica automatica dopo 20 secondi
+                        setTimeout(() => {
+                            if (autoReplyNotification.parentNode) {
+                                autoReplyNotification.remove();
+                            }
+                        }, 20000);
+                    }, 2000);
                     
                     // Rimuovi il messaggio dopo 8 secondi
                     setTimeout(() => {
@@ -4068,31 +4084,28 @@
                             successMessage.remove();
                         }
                     }, 8000);
+                }
+                
+                // Funzione per mostrare messaggio di errore
+                function showErrorMessage() {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4';
+                    errorMessage.innerHTML = `
+                        <strong>Errore!</strong> Si è verificato un problema nell'invio della richiesta. 
+                        <br>Per favore riprova o contattaci direttamente:
+                        <br><strong>📞 +39 392 028 8504</strong>
+                        <br><strong>📧 infonordedilsrl@gmail.com</strong>
+                    `;
                     
-                    // Aggiungi anche un fallback per dispositivi mobili o situazioni dove mailto potrebbe non funzionare
+                    contactForm.appendChild(errorMessage);
+                    
+                    // Rimuovi il messaggio dopo 10 secondi
                     setTimeout(() => {
-                        const fallbackMessage = document.createElement('div');
-                        fallbackMessage.className = 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mt-4';
-                        fallbackMessage.innerHTML = `
-                            <strong>Alternativa:</strong> Se il client email non si è aperto, puoi copiare questi dati e inviarli manualmente a <strong>infonordedilsrl@gmail.com</strong>:<br><br>
-                            <div class="bg-white p-3 rounded border text-sm font-mono">
-                                <strong>Nome:</strong> ${data.name} ${data.surname || ''}<br>
-                                <strong>Email:</strong> ${data.email}<br>
-                                <strong>Telefono:</strong> ${data.phone || 'Non specificato'}<br>
-                                <strong>Servizio:</strong> ${data.service || 'Non specificato'}<br>
-                                <strong>Messaggio:</strong> ${data.message}
-                            </div>
-                        `;
-                        
-                        contactForm.appendChild(fallbackMessage);
-                        
-                        // Rimuovi il messaggio fallback dopo 15 secondi
-                        setTimeout(() => {
-                            if (fallbackMessage.parentNode) {
-                                fallbackMessage.remove();
-                            }
-                        }, 15000);
-                    }, 3000);
+                        if (errorMessage.parentNode) {
+                            errorMessage.remove();
+                        }
+                    }, 10000);
+                }
                 });
                 
                 // Funzione di validazione input
