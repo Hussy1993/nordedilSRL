@@ -58,7 +58,9 @@
     <script>
         // Inizializzazione EmailJS
         (function(){
-            emailjs.init("YOUR_PUBLIC_KEY"); // Sostituire con la tua chiave pubblica EmailJS
+            // NOTA: Devi sostituire con la tua Public Key dal dashboard EmailJS > Account
+            // La Public Key ha formato tipo: user_xxxxxxxxx o una stringa simile
+            emailjs.init("YOUR_PUBLIC_KEY_HERE"); // Vai su emailjs.com > Account per trovare la Public Key
         })();
         console.log('EmailJS inizializzato correttamente');
         
@@ -1464,6 +1466,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
                 pointer-events: none;
+                visibility: hidden;
             }
             
             #mobile-menu a:hover, #mobile-menu a:focus {
@@ -3866,7 +3869,7 @@
                 once: true
             });
             
-            // MOBILE MENU OTTIMIZZATO CON TOUCH SUPPORT
+            // MOBILE MENU OTTIMIZZATO CON TOUCH SUPPORT - IMPLEMENTAZIONE CORRETTA
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             let isMenuOpen = false;
@@ -3882,6 +3885,8 @@
                         mobileMenuButton.setAttribute('aria-expanded', 'true');
                         // Previene scroll del body quando menu è aperto
                         document.body.style.overflow = 'hidden';
+                        // Aggiunge overlay per click outside
+                        addMenuOverlay();
                     } else {
                         mobileMenu.classList.remove('show');
                         mobileMenuButton.setAttribute('aria-expanded', 'false');
@@ -3893,11 +3898,36 @@
                                 mobileMenu.classList.add('hidden');
                             }
                         }, 300);
+                        // Rimuove overlay
+                        removeMenuOverlay();
+                    }
+                }
+                
+                // Crea overlay per click outside
+                function addMenuOverlay() {
+                    let overlay = document.getElementById('mobile-menu-overlay');
+                    if (!overlay) {
+                        overlay = document.createElement('div');
+                        overlay.id = 'mobile-menu-overlay';
+                        overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.3);z-index:998;cursor:pointer;';
+                        overlay.addEventListener('click', toggleMobileMenu);
+                        document.body.appendChild(overlay);
+                    }
+                }
+                
+                // Rimuove overlay
+                function removeMenuOverlay() {
+                    const overlay = document.getElementById('mobile-menu-overlay');
+                    if (overlay) {
+                        overlay.remove();
                     }
                 }
                 
                 // Event listeners ottimizzati per touch
-                mobileMenuButton.addEventListener('click', toggleMobileMenu);
+                mobileMenuButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleMobileMenu();
+                });
                 
                 // Chiudi menu quando si clicca su un link
                 const mobileMenuLinks = mobileMenu.querySelectorAll('a');
@@ -3916,7 +3946,7 @@
                     }
                 });
                 
-                // Chiudi menu cliccando fuori
+                // Chiudi menu cliccando fuori (gestito dall'overlay)
                 document.addEventListener('click', function(event) {
                     if (isMenuOpen && !mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
                         toggleMobileMenu();
@@ -4001,7 +4031,7 @@
                     };
                     
                     // Invio tramite EmailJS
-                    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                    emailjs.send('service_p31ldlc', 'YOUR_TEMPLATE_ID_HERE', templateParams)
                         .then(function(response) {
                             console.log('Email inviata con successo!', response.status, response.text);
                             
