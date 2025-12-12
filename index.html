@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description"
+        content="NORD EDIL S.R.L. - Azienda specializzata in costruzioni e ristrutturazioni a Lugo (RA). Realizziamo progetti edilizi residenziali e commerciali chiavi in mano con qualità e professionalità.">
+    <meta name="keywords"
+        content="costruzioni, ristrutturazioni, edilizia, Lugo, Ravenna, movimento terra, fognature, tetti">
+    <meta name="google-site-verification" content="verificaCodiceGoogleSearchConsole" />
+    <link rel="canonical" href="https://nordedilsrl.it" />
+    <title>NORD EDIL S.R.L. - Costruzioni e ristrutturazioni a Lugo (RA)</title>
+
+    <!-- Preload risorse critiche -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap"
+        as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+        as="style">
+
+    <!-- CSS Ottimizzato -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Librerie CSS aggiuntive -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Lazy loading immagini -->
+    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
+
+    <!-- EmailJS per invio email -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- Script non critici caricati in modo differito -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Three.js e librerie correlate -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@18.6.4/dist/tween.umd.js" defer></script>
+
+    <!-- Post-processing per effetti fotorealistici (caricati in modo differito) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/EffectComposer.js"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/RenderPass.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/UnrealBloomPass.js"
+        defer></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/CopyShader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/LuminosityHighPassShader.js"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/ShaderPass.js" defer></script>
+
+    <!-- Importa i file JavaScript con Vite -->
+    <script type="module" src="./main.js"></script>
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-50">
+    <!-- Contenuto completo con animazioni 3D e sezioni dinamiche -->
+    <!-- WhatsApp Floating Button ottimizzato per mobile -->
+    <a href="https://wa.me/393920288504"
+        class="fixed bg-green-500 text-white rounded-full flex items-center justify-center shadow-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-110"
+        style="bottom: 140px; right: 1rem; width: 56px; height: 56px; z-index: 999; animation: pulse 2s infinite; min-height: 56px; min-width: 56px;"
+        aria-label="Contattaci su WhatsApp" role="button">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="sr-only">Contattaci su WhatsApp</span>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="sticky-header bg-white bg-opacity-95 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-16 md:w-20 logo-container transition-transform duration-300 hover:scale-105">
+                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/780a1a46b25e85d8968761c566fe22f0"
+                        alt="NORD EDIL S.R.L. Logo" class="w-full h-auto">
+                </div>
+                <div class="ml-3">
+                    <h1 class="text-xl md:text-2xl font-bold text-primary">NORD EDIL S.R.L.</h1>
+                    <p class="text-xs md:text-sm text-gray-600">Costruzioni e ristrutturazioni a Lugo (RA)</p>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home"
+                    class="text-gray-800 hover:text-primary font-bold transition duration-300 relative nav-link py-2 px-3 rounded-md hover:bg-gray-100">Home</a>
+                <a href="#services"
+                    class="text-gray-800 hover:text-primary font-bold transition duration-300 relative nav-link py-2 px-3 rounded-md hover:bg-gray-100">Servizi</a>
+                <a href="#about"
+                    class="text-gray-800 hover:text-primary font-bold transition duration-300 relative nav-link py-2 px-3 rounded-md hover:bg-gray-100">Chi
+                    Siamo</a>
+                <a href="#contact"
+                    class="text-gray-800 hover:text-primary font-bold transition duration-300 relative nav-link py-2 px-3 rounded-md hover:bg-gray-100">Contatti</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button"
+                    class="text-gray-800 hover:text-primary focus:outline-none transition duration-300 transform hover:scale-110"
+                    aria-label="Menu di navigazione" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu ottimizzato (hidden by default) -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white py-4 px-4 shadow-xl rounded-xl border-t border-gray-100 animate-fadeDown">
+            <div class="flex flex-col space-y-2">
+                <a href="#home"
+                    class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-home mr-3 text-primary text-lg"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#services"
+                    class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-tools mr-3 text-primary text-lg"></i>
+                    <span>Servizi</span>
+                </a>
+                <a href="#about"
+                    class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-users mr-3 text-primary text-lg"></i>
+                    <span>Chi Siamo</span>
+                </a>
+                <a href="#contact"
+                    class="text-gray-800 hover:text-primary font-medium transition duration-300 py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center">
+                    <i class="fas fa-envelope mr-3 text-primary text-lg"></i>
+                    <span>Contatti</span>
+                </a>
+                <div class="border-t border-gray-100 my-2"></div>
+                <a href="https://wa.me/393920288504"
+                    class="bg-green-500 text-white font-medium py-3 px-4 rounded-lg hover:bg-green-600 transition duration-300 flex items-center justify-center shadow-md hover:shadow-lg"
+                    aria-label="Contattaci su WhatsApp">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                    <span>Contattaci su WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="header relative min-h-screen flex items-center justify-center text-white">
+        <div id="animation-container" class="absolute top-0 left-0 w-full h-full z-0"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="header-content text-center max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">NORD EDIL S.R.L.</h1>
+                <h2 class="text-xl md:text-2xl mb-8">Professionisti nella costruzione e ristrutturazione dal progetto
+                    alla consegna</h2>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#contact"
+                        class="bg-primary hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        Richiedi un preventivo
+                    </a>
+                    <a href="#services"
+                        class="bg-transparent hover:bg-white hover:text-primary text-white font-bold py-4 px-8 border-2 border-white hover:border-transparent rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        I nostri servizi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:shadow-3xl hover:-translate-y-2"
+                data-aos="fade-up">
+                <div class="relative overflow-hidden">
+                    <img src="/FOTO2/IMMAGINE PRO.png" alt="Servizi Professionali NORD EDIL"
+                        class="w-full h-auto transition-transform duration-700 hover:scale-105" width="800" height="500"
+                        loading="eager" decoding="async">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </div>
+                <div class="p-10 text-center">
+                    <h3 class="text-3xl font-bold mb-4 text-primary">Eccellenza nei Progetti Edili</h3>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">Realizziamo progetti all'avanguardia con
+                        attenzione ai dettagli e tecniche costruttive di ultima generazione.</p>
+                    <a href="#contact"
+                        class="inline-block bg-primary hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        Richiedi una Consulenza
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section migliorato -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">I Nostri Servizi</h2>
+                <div
+                    class="w-32 h-1.5 bg-gradient-to-r from-primary via-red-500 to-red-600 mx-auto mb-8 rounded-full shadow-lg">
+                </div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Offriamo soluzioni chiavi in mano, gestendo ogni
+                    fase: dalla progettazione alla realizzazione finale per privati, aziende ed enti pubblici.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Costruzioni -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="/FOTO2/costruzioni chiavi in mano xd.png"
+                            alt="Costruzioni Chiavi in Mano" width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div
+                            class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-home text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Costruzioni Chiavi in Mano</h3>
+                        <p class="text-gray-600 mb-4">Realizzazione completa di edifici, dalla progettazione fino alla
+                            consegna finale.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ristrutturazioni -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="/FOTO2/ristrutturazioni complete xd.png"
+                            alt="Ristrutturazioni Complete" width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div
+                            class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-tools text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Ristrutturazioni Complete</h3>
+                        <p class="text-gray-600 mb-4">Ammodernamento di immobili con rifacimento impianti, infissi,
+                            tinteggiature e finiture.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movimento Terra -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="/FOTO2/MOVIMENTO TERRA XD.png" alt="Movimento Terra" width="400"
+                            height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div
+                            class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-truck-pickup text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Movimento Terra</h3>
+                        <p class="text-gray-600 mb-4">Scavi, riporti e modellazione del terreno per nuove costruzioni o
+                            infrastrutture.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fognature -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="/FOTO2/FOGNATURE_2.jpeg" alt="Fognature" width="400"
+                            height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div
+                            class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-water text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Fognature</h3>
+                        <p class="text-gray-600 mb-4">Progettazione e installazione di sistemi di drenaggio e
+                            smaltimento acque.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rifacimento Tetti -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/operai_rifacimento_tetto.jpeg" alt="Rifacimento Tetti"
+                            width="400" height="300" />
+                    </div>
+                    <div class="service-content">
+                        <div
+                            class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-home text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Rifacimento Tetti</h3>
+                        <p class="text-gray-600 mb-4">Manutenzione o sostituzione di coperture per garantire isolamento
+                            e sicurezza.</p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pavimentazioni in Resina -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-image">
+                        <img class="lazyload" data-src="FOTO2/pavimento_lucido_resina.png"
+                            alt="Pavimentazioni in Resina" />
+                    </div>
+                    <div class="service-content">
+                        <div
+                            class="service-icon bg-gradient-to-r from-primary to-red-700 text-white rounded-full p-4 shadow-lg">
+                            <i class="fas fa-paint-roller text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Pavimentazioni in Resina</h3>
+                        <p class="text-gray-600 mb-4">Soluzioni tecniche e di design per ambienti civili e industriali.
+                        </p>
+                        <div class="mt-auto">
+                            <a href="#contact" class="text-primary font-bold hover:underline flex items-center">
+                                Scopri di più <i class="fas fa-arrow-right text-sm ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Prima e Dopo Slider Section -->
+    <section id="prima-dopo" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+
+
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">Prima & Dopo</h2>
+                <div
+                    class="w-40 h-1.5 bg-gradient-to-r from-primary via-red-500 to-red-600 mx-auto mb-8 rounded-full shadow-lg">
+                </div>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">La nostra esperienza al tuo servizio:
+                    scopri le trasformazioni che possiamo realizzare per il tuo progetto.</p>
+            </div>
+
+            <!-- Slider Prima e Dopo -->
+            <div class="prima-dopo-slider" data-aos="fade-up">
+                <div class="slider-container" id="sliderContainer">
+                    <!-- Slide 1: Ristrutturazione Residenziale -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="before-section">
+                                <img src="FOTO2/PRIMA 1.jpeg" alt="Prima - Ristrutturazione Residenziale"
+                                    class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">PRIMA</div>
+                                </div>
+                            </div>
+                            <div class="after-section">
+                                <img src="FOTO2/DOPO 1.jpeg" alt="Dopo - Ristrutturazione Residenziale"
+                                    class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">DOPO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-title">Ristrutturazione Residenziale</div>
+                            <div class="slide-location">Via dei Platani, Lugo \ RAVENNA</div>
+                            <div class="slide-tags">
+                                <span class="slide-tag">Residenziale</span>
+                                <span class="slide-tag">2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Ampliamento Esterno -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="before-section">
+                                <img src="FOTO2/PRIMA 2.jpeg" alt="Prima - Ampliamento Esterno" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">PRIMA</div>
+                                </div>
+                            </div>
+                            <div class="after-section">
+                                <img src="FOTO2/DOPO 2.jpeg" alt="Dopo - Ampliamento Esterno" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">DOPO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-title">Ampliamento Esterno</div>
+                            <div class="slide-location">Località San Lorenzo, Lugo (RA)</div>
+                            <div class="slide-tags">
+                                <span class="slide-tag">Commerciale</span>
+                                <span class="slide-tag">2022</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Rifacimento Tetti -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="before-section">
+                                <img src="FOTO2/tetto prima.jpeg" alt="Prima - Rifacimento Tetti" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">PRIMA</div>
+                                </div>
+                            </div>
+                            <div class="after-section">
+                                <img src="FOTO2/tetto dopo.jpeg" alt="Dopo - Rifacimento Tetti" class="slide-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">DOPO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-title">Rifacimento Tetti</div>
+                            <div class="slide-location">Zona Industriale, Lugo (RA)</div>
+                            <div class="slide-tags">
+                                <span class="slide-tag">Industriale</span>
+                                <span class="slide-tag">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controlli di navigazione -->
+                <button class="slider-nav prev" onclick="changeSlide(-1)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                    </svg>
+                </button>
+                <button class="slider-nav next" onclick="changeSlide(1)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Indicatori (dots) -->
+            <div class="slider-dots">
+                <div class="dot active" onclick="currentSlide(1)"></div>
+                <div class="dot" onclick="currentSlide(2)"></div>
+                <div class="dot" onclick="currentSlide(3)"></div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-lg text-gray-700">Hai un progetto simile? <a href="#contact"
+                        class="text-primary font-semibold hover:underline">Contattaci ora!</a></p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- Sezione Galleria Foto -->
+    <section id="galleria" class="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <!-- Header della Galleria -->
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
+                    <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+                    <span class="text-primary">Galleria</span> dei Nostri Lavori
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Scopri le nostre realizzazioni più prestigiose che testimoniano
+                    <span class="font-semibold text-primary">l'eccellenza</span> e
+                    <span class="font-semibold text-primary">l'esperienza</span> del nostro team
+                </p>
+                <div class="mt-6 flex justify-center">
+                    <div class="h-1 w-24 bg-gradient-to-r from-primary to-red-600 rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Slideshow Principale -->
+            <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Presentazione Progetti</h3>
+                        <p class="text-sm text-gray-600">Naviga attraverso i nostri lavori più rappresentativi</p>
+                    </div>
+
+                    <div id="gallery-slideshow" class="swiper gallery-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Le slide verranno generate dinamicamente con JavaScript -->
+                        </div>
+
+                        <!-- Controlli di navigazione migliorati -->
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </div>
+
+                        <!-- Indicatore progresso -->
+                        <div class="swiper-scrollbar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solo Headline -->
+            <div data-aos="fade-up" data-aos-delay="400" class="mt-8">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-gray-800">
+                        <span class="text-primary">Esplora</span> i Nostri Progetti
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- About Section migliorata -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap items-center">
+                <div class="w-full lg:w-1/2 mb-12 lg:mb-0" data-aos="fade-right">
+                    <div class="relative">
+                        <!-- Immagine principale con effetto 3D -->
+                        <div
+                            class="transform hover:scale-105 transition-transform duration-700 rounded-2xl shadow-2xl overflow-hidden">
+                            <img class="lazyload w-full h-auto rounded-2xl" data-src="FOTO2/casa premium xd.png"
+                                alt="NORD EDIL Team">
+                        </div>
+
+                        <!-- Immagini decorative che si muovono con effetto parallax -->
+                        <div
+                            class="absolute top-10 -right-10 z-0 hidden md:block transform hover:translate-x-4 hover:-translate-y-4 transition-all duration-700">
+                            <img class="lazyload w-64 h-48 object-cover rounded-lg shadow-xl"
+                                data-src="FOTO2/applicazione_resina_pavimento.jpg" alt="Progetto NORD EDIL">
+                        </div>
+                        <div
+                            class="absolute -bottom-10 -left-10 z-0 hidden md:block transform hover:-translate-x-4 hover:translate-y-4 transition-all duration-700">
+                            <img class="lazyload w-40 h-40 object-cover rounded-lg shadow-xl"
+                                data-src="FOTO2/isolamento_termico_tetto.jpg" alt="Dettaglio costruzione" width="160"
+                                height="160">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 lg:pl-16" data-aos="fade-left">
+                    <div class="lg:max-w-lg">
+                        <div
+                            class="inline-block px-3 py-1 bg-red-50 text-primary rounded-full text-sm font-semibold mb-4">
+                            Dal 2008 - Oltre 15 anni di eccellenza
+                        </div>
+                        <h2 class="text-4xl font-bold mb-4 text-gray-800">Chi Siamo</h2>
+                        <div class="w-24 h-1.5 bg-gradient-to-r from-primary to-red-600 mb-6 rounded-full shadow-md">
+                        </div>
+                        <h3 class="text-primary text-xl font-bold mb-6">Il partner di fiducia per le costruzioni a Lugo
+                            \ RAVENNA</h3>
+                        <p class="text-gray-600 mb-6">
+                            NORD EDIL S.R.L. è il partner di fiducia per le costruzioni a Lugo \ RAVENNA. Con oltre 15
+                            anni di successi nel settore, trasformiamo idee in realtà concrete per privati, aziende ed
+                            enti pubblici. La nostra forza? Soluzioni chiavi in mano gestite dall'idea iniziale al
+                            collaudo finale.
+                        </p>
+                        <p class="text-gray-600 mb-8">
+                            Ogni progetto porta con sé l'esperienza di centinaia di cantieri completati e la garanzia di
+                            risultati eccellenti. Edilizia intelligente che unisce tradizione italiana, innovazione
+                            tecnologica e sostenibilità ambientale. Perché la qualità non è mai un caso, ma il risultato
+                            di competenza consolidata.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6"
+                            style="animation: fadeInUp 0.8s ease forwards;">
+                            <div
+                                class="flex flex-col items-center p-6 bg-white rounded-xl shadow-md transform hover:scale-105 hover:shadow-lg transition-all duration-300 text-center">
+                                <div
+                                    class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
+                                    <i class="fas fa-medal text-primary text-2xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-1">Qualità</h4>
+                                <p class="text-gray-600">Materiali e tecniche d'eccellenza</p>
+                            </div>
+                            <div
+                                class="flex flex-col items-center p-6 bg-white rounded-xl shadow-md transform hover:scale-105 hover:shadow-lg transition-all duration-300 text-center">
+                                <div
+                                    class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
+                                    <i class="fas fa-hand-holding-usd text-primary text-2xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-1">Costi Competitivi</h4>
+                                <p class="text-gray-600">Soluzioni economiche senza compromessi</p>
+                            </div>
+                            <div
+                                class="flex flex-col items-center p-6 bg-white rounded-xl shadow-md transform hover:scale-105 hover:shadow-lg transition-all duration-300 text-center">
+                                <div
+                                    class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
+                                    <i class="fas fa-people-carry text-primary text-2xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-1">Esperti</h4>
+                                <p class="text-gray-600">Team qualificato e professionale</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center p-4 bg-white rounded-lg shadow-sm transform hover:scale-105 transition-transform duration-300">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-handshake text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Affidabilità</h4>
+                                <p class="text-sm text-gray-600">Rispetto di tempi e impegni</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center p-4 bg-white rounded-lg shadow-sm transform hover:scale-105 transition-transform duration-300">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-lightbulb text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Innovazione</h4>
+                                <p class="text-sm text-gray-600">Soluzioni moderne ed efficienti</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center p-4 bg-white rounded-lg shadow-sm transform hover:scale-105 transition-transform duration-300">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-leaf text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Sostenibilità</h4>
+                                <p class="text-sm text-gray-600">Costruzioni a basso impatto</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-50 to-white fade-in">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Contattaci</h2>
+                <div class="w-32 h-2 bg-gradient-to-r from-primary to-red-600 mx-auto mb-8 rounded-full shadow-lg">
+                </div>
+
+                <!-- Call to Action Button -->
+                <div class="mb-8">
+                    <a href="tel:+393920288504"
+                        class="inline-flex items-center bg-primary hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <i class="fas fa-phone-alt mr-3 text-lg"></i>
+                        <span class="text-lg">Chiamaci Ora</span>
+                    </a>
+                    <a href="https://wa.me/393920288504"
+                        class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl ml-4">
+                        <i class="fab fa-whatsapp mr-3 text-lg"></i>
+                        <span class="text-lg">WhatsApp</span>
+                    </a>
+                </div>
+
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">Richiedi un preventivo gratuito o
+                    contattaci per maggiori informazioni sui nostri servizi di costruzione e ristrutturazione.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2 bg-white p-8 rounded-2xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-envelope text-primary mr-3"></i>
+                        Inviaci un messaggio
+                    </h3>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Nome <span
+                                        class="text-primary">*</span></label>
+                                <input type="text" id="name" name="name" required aria-required="true"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300">
+                            </div>
+                            <div>
+                                <label for="surname" class="block text-gray-700 font-medium mb-2">Cognome <span
+                                        class="text-primary">*</span></label>
+                                <input type="text" id="surname" name="surname" required aria-required="true"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email <span
+                                    class="text-primary">*</span></label>
+                            <input type="email" id="email" name="email" required aria-required="true"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Telefono</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300"
+                                placeholder="+39 123 456 7890">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-gray-700 font-medium mb-2">Servizio di
+                                interesse</label>
+                            <select id="service" name="service"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 bg-white">
+                                <option value="">Seleziona un servizio</option>
+                                <option value="costruzioni">Costruzioni Chiavi in Mano</option>
+                                <option value="ristrutturazioni">Ristrutturazioni Complete</option>
+                                <option value="movimento-terra">Movimento Terra</option>
+                                <option value="fognature">Fognature</option>
+                                <option value="recinzioni">Recinzioni</option>
+                                <option value="rifacimento-tetti">Rifacimento Tetti</option>
+                                <option value="pavimentazioni-resina">Pavimentazioni in Resina</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Messaggio <span
+                                    class="text-primary">*</span></label>
+                            <textarea id="message" name="message" rows="5" required aria-required="true"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 resize-none"
+                                placeholder="Descrivi il tuo progetto o richiesta..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-primary to-red-700 text-white font-bold py-5 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center border-2 border-red-600 relative overflow-hidden group"
+                            aria-label="Invia richiesta di contatto"
+                            style="background: linear-gradient(135deg, #dc2626, #b91c1c) !important; box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4) !important; min-height: 60px !important;">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                            <i class="fas fa-paper-plane mr-3 text-lg relative z-10"></i>
+                            <span class="text-lg font-extrabold uppercase tracking-wide relative z-10">Invia
+                                Richiesta</span>
+                            <div
+                                class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300">
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl shadow-xl h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center">
+                            <i class="fas fa-info-circle text-primary mr-3"></i>
+                            Informazioni di Contatto
+                        </h3>
+                        <div class="space-y-8">
+                            <div
+                                class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div
+                                    class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+                                        class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946"
+                                            stroke-width="1.5" />
+                                        <path
+                                            d="M12 6c-2.2 0-4 1.8-4 4 0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                                            fill="#e63946" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Sede Operativa</h4>
+                                    <p class="text-gray-600">Lugo, Ravenna<br>Emilia-Romagna, Italia</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div
+                                    class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+                                        class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946"
+                                            stroke-width="1.5" />
+                                        <path
+                                            d="M17 15.5c-1.2 1-2.4 1.5-3.5 1.5-2.2 0-4-1.8-4-4 0-1.1 0.5-2.3 1.5-3.5L9.5 8c-1.4 1.5-2 3.3-2 5 0 3.9 3.1 7 7 7 1.7 0 3.5-0.6 5-2l-1.5-1.5z"
+                                            fill="#e63946" />
+                                        <path
+                                            d="M14.5 15.5c-0.7 0.7-1.5 1-2.5 1-1.9 0-3.5-1.6-3.5-3.5 0-1 0.3-1.8 1-2.5L8 9c-1.2 1.2-1.5 2.6-1.5 4 0 3 2.5 5.5 5.5 5.5 1.4 0 2.8-0.3 4-1.5l-1.5-1.5z"
+                                            fill="#333" />
+                                        <path
+                                            d="M13.5 2.5c0 0 1 0.5 2 1.5s1.5 2 1.5 2l-2.5 2.5c0 0-0.5-1-1.5-2s-2-1.5-2-1.5l2.5-2.5z"
+                                            fill="#e63946" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Telefono</h4>
+                                    <p class="text-gray-600"><a href="tel:+393920288504"
+                                            class="hover:text-primary transition-colors">+39 392 028 8504</a></p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div
+                                    class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+                                        class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946"
+                                            stroke-width="1.5" />
+                                        <path
+                                            d="M5 8v8c0 0.6 0.4 1 1 1h12c0.6 0 1-0.4 1-1V8c0-0.6-0.4-1-1-1H6C5.4 7 5 7.4 5 8z"
+                                            fill="white" stroke="#e63946" stroke-width="1.2" />
+                                        <path d="M5 9l7 5 7-5" fill="none" stroke="#e63946" stroke-width="1.2" />
+                                        <path d="M5 15l5-3.5" fill="none" stroke="#333" stroke-width="0.8" />
+                                        <path d="M19 15l-5-3.5" fill="none" stroke="#333" stroke-width="0.8" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Email</h4>
+                                    <p class="text-gray-600"><a href="mailto:infonordedilsrl@gmail.com"
+                                            class="hover:text-primary transition-colors">infonordedilsrl@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-start group hover:bg-white hover:shadow-md p-4 rounded-xl transition-all duration-300">
+                                <div
+                                    class="bg-white rounded-full p-2 mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+                                        class="text-primary">
+                                        <circle cx="12" cy="12" r="10" fill="white" stroke="#e63946"
+                                            stroke-width="1.5" />
+                                        <circle cx="12" cy="12" r="7" fill="white" stroke="#e63946"
+                                            stroke-width="1.2" />
+                                        <path d="M12 8v4l3 3" stroke="#333" stroke-width="1.5" stroke-linecap="round"
+                                            fill="none" />
+                                        <path d="M12 5v1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round" />
+                                        <path d="M12 18v1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round" />
+                                        <path d="M5 12h1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round" />
+                                        <path d="M18 12h1" stroke="#e63946" stroke-width="1.2" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-1">Orari di Lavoro</h4>
+                                    <p class="text-gray-600">Lun-Ven: 8:00 - 18:00<br>Sabato: 9:00 - 13:00<br><span
+                                            class="text-sm text-gray-500">Domenica: Chiuso</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-4 bg-primary/10 rounded-xl border-l-4 border-primary">
+                            <p class="text-sm text-gray-700">
+                                <i class="fas fa-lightbulb text-primary mr-2"></i>
+                                <strong>Preventivi gratuiti</strong> - Contattaci per una consulenza personalizzata!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Sezione Testimonianze e Recensioni Verificate -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">Clienti Soddisfatti</h2>
+                <div
+                    class="w-32 h-1.5 bg-gradient-to-r from-primary via-red-500 to-red-600 mx-auto mb-8 rounded-full shadow-lg">
+                </div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Scopri cosa dicono i nostri clienti dei nostri servizi e della qualità del nostro lavoro.
+                </p>
+                <div class="mt-6 flex justify-center items-center">
+                    <div class="flex">
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    </div>
+                    <span class="ml-3 text-xl font-bold text-gray-800">4.9/5</span>
+                    <span class="ml-2 text-gray-600">(98 recensioni verificate)</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Recensione 1 -->
+                <div class="bg-white rounded-xl shadow-xl p-8 relative transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="absolute top-4 right-4 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                        <i class="fas fa-check-circle mr-1"></i> Verificato
+                    </div>
+                    <div class="flex items-center mb-6">
+                        <img src="FOTO2/WhatsApp Image 2025-04-04 at 17.47.33 (1).jpeg" alt="Marco Bianchi"
+                            class="w-20 h-20 rounded-full border-4 border-white shadow-lg transition-transform duration-300 hover:scale-105 object-cover">
+                        <div class="ml-5">
+                            <h4 class="font-bold text-xl text-gray-800">Marco Bianchi</h4>
+                            <p class="text-gray-600 text-sm mb-2">Ristrutturazione Appartamento</p>
+                            <div class="star-rating flex space-x-1">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 relative testimonial-quote leading-relaxed">
+                        "Servizio impeccabile. La mia casa è stata ristrutturata nei tempi previsti e con grande
+                        professionalità. Tutti gli operai erano esperti e attenti ai dettagli. Consiglio vivamente NORD
+                        EDIL a chiunque cerchi qualità e affidabilità."
+                    </p>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-gray-500"><i class="far fa-calendar-alt mr-1"></i> Maggio 2023</span>
+                        <span
+                            class="flex items-center bg-gray-100 px-3 py-1 rounded-full transition-all duration-300 hover:bg-gray-200 cursor-pointer">
+                            <i class="fas fa-thumbs-up text-primary mr-2"></i> Utile (24)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Recensione 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 relative transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="verified-badge">
+                        <i class="fas fa-check-circle mr-1"></i> Verificato
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <img src="FOTO2/WhatsApp Image 2025-04-04 at 17.47.33 (3).jpeg" alt="Laura Rossi"
+                            class="w-16 h-16 rounded-full border-4 border-white shadow-md object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Laura Rossi</h4>
+                            <p class="text-gray-600 text-sm">Costruzione Villetta</p>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">
+                        "Abbiamo affidato a NORD EDIL la costruzione della nostra villetta e siamo rimasti pienamente
+                        soddisfatti. Grande competenza, puntualità e massima disponibilità nel seguire le nostre
+                        richieste. Il risultato finale ha superato le nostre aspettative."
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> Settembre 2023</span>
+                        <span class="flex items-center">
+                            <i class="fas fa-thumbs-up text-primary mr-1"></i> Utile (19)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Recensione 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 relative transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="verified-badge">
+                        <i class="fas fa-check-circle mr-1"></i> Verificato
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <img src="FOTO2/WhatsApp Image 2025-04-04 at 18.03.06 (2).jpeg" alt="Antonio Verdi"
+                            class="w-16 h-16 rounded-full border-4 border-white shadow-md object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Antonio Verdi</h4>
+                            <p class="text-gray-600 text-sm">Rifacimento Tetto</p>
+                            <div class="star-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">
+                        "Ho scelto NORD EDIL per il rifacimento del tetto e ho trovato un team di professionisti seri ed
+                        efficienti. Lavoro eseguito a regola d'arte, con materiali di ottima qualità e rispettando tutte
+                        le normative di sicurezza."
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> Luglio 2023</span>
+                        <span class="flex items-center">
+                            <i class="fas fa-thumbs-up text-primary mr-1"></i> Utile (15)
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificazioni e Riconoscimenti Migliorata -->
+            <div class="mt-16 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-2xl p-12 border border-gray-100"
+                data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                        Certificazioni e Riconoscimenti
+                    </h3>
+                    <div class="w-32 h-1.5 bg-gradient-to-r from-primary to-red-600 mx-auto rounded-full shadow-md">
+                    </div>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">La nostra qualità è certificata e riconosciuta a
+                        livello nazionale</p>
+                </div>
+
+                <!-- Certificazioni ottimizzate per mobile -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 items-center">
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div
+                            class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i
+                                class="fas fa-award text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">ISO 9001</p>
+                        <p class="text-xs text-gray-500 mt-1">Qualità</p>
+                    </div>
+
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div
+                            class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i
+                                class="fas fa-medal text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">SOA OG1</p>
+                        <p class="text-xs text-gray-500 mt-1">Attestazione</p>
+                    </div>
+
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div
+                            class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i
+                                class="fas fa-leaf text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">ISO 14001</p>
+                        <p class="text-xs text-gray-500 mt-1">Ambiente</p>
+                    </div>
+
+                    <div class="text-center transform transition-all duration-300 hover:scale-110 group">
+                        <div
+                            class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i
+                                class="fas fa-shield-alt text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">ISO 45001</p>
+                        <p class="text-xs text-gray-500 mt-1">Sicurezza</p>
+                    </div>
+
+                    <div
+                        class="text-center transform transition-all duration-300 hover:scale-110 group sm:col-span-2 md:col-span-3 lg:col-span-1">
+                        <div
+                            class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg border-2 border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/30 group-hover:from-primary/5 group-hover:to-red-50">
+                            <i
+                                class="fas fa-star text-primary text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <p class="font-bold text-gray-800 text-xs sm:text-sm">Google 4.9/5</p>
+                        <p class="text-xs text-gray-500 mt-1">Recensioni</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citazione motivazionale -->
+            <div class="mt-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="text-primary text-4xl mb-5">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="text-2xl italic text-gray-700 mb-5">
+                    "La qualità non è mai un caso, è sempre il risultato di uno sforzo intelligente."
+                </p>
+                <p class="text-gray-500 font-medium">- NORD EDIL S.R.L.</p>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <a href="#contact"
+                    class="bg-primary hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    Richiedi un preventivo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer migliorato -->
+    <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
+        <!-- Pattern decorativo -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0"
+                style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'white\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/svg%3E');">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white inline-block p-3 rounded-lg mb-4">
+                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/780a1a46b25e85d8968761c566fe22f0"
+                            alt="NORD EDIL S.R.L. Logo" class="w-16 h-auto">
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">NORD EDIL S.R.L.</h3>
+                    <p class="text-gray-400 mb-6">Professionisti nella costruzione e ristrutturazione dal progetto alla
+                        consegna, a Lugo (RA) dal 2008.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110"
+                            aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110"
+                            aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110"
+                            aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-6 relative">
+                        <span class="relative z-10">Link Veloci</span>
+                        <span class="absolute -bottom-1 left-0 w-10 h-1 bg-primary"></span>
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#home"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#services"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Servizi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Chi Siamo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Contatti
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-bold mb-6 relative">
+                        <span class="relative z-10">Servizi</span>
+                        <span class="absolute -bottom-1 left-0 w-10 h-1 bg-primary"></span>
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Costruzioni Chiavi in Mano
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Ristrutturazioni Complete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Movimento Terra
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Fognature
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-primary"></i>Rifacimento Tetti
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-xl font-bold mb-6 relative">
+                        <span class="relative z-10">Contatti</span>
+                        <span class="absolute -bottom-1 left-0 w-10 h-1 bg-primary"></span>
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="bg-primary rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-200">Lugo (RA)</p>
+                                <p class="text-gray-400">Emilia-Romagna, Italia</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-primary rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-200">+393920288504</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-primary rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-200">infonordedilsrl@gmail.com</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2023 NORD EDIL S.R.L. - Tutti i diritti riservati. P.IVA 02776000396</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="public/privacy.html"
+                        class="text-gray-400 hover:text-white transition-all duration-300 hover:underline">Privacy
+                        Policy</a>
+                    <a href="public/cookie-policy.html"
+                        class="text-gray-400 hover:text-white transition-all duration-300 hover:underline">Cookie
+                        Policy</a>
+                    <a href="#"
+                        class="text-gray-400 hover:text-white transition-all duration-300 hover:underline">Termini di
+                        Servizio</a>
+                </div>
+                <p class="mt-6 text-sm text-gray-500 max-w-2xl mx-auto">
+                    Sito sviluppato con attenzione alla sostenibilità digitale e all'efficienza energetica.
+                </p>
+                <div class="mt-6 flex justify-center items-center space-x-2">
+                    <span class="text-xs text-gray-500">Torna su</span>
+                    <a href="#home"
+                        class="w-8 h-8 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <i class="fas fa-chevron-up text-white text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button ottimizzato per mobile -->
+    <a href="#home" id="back-to-top"
+        class="fixed bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition duration-300 opacity-0 invisible transform hover:scale-110"
+        style="bottom: 80px; right: 1rem; width: 48px; height: 48px; z-index: 998; min-height: 48px; min-width: 48px;"
+        aria-label="Torna all'inizio della pagina" role="button">
+        <i class="fas fa-arrow-up text-lg" aria-hidden="true"></i>
+        <span class="sr-only">Torna all'inizio</span>
+    </a>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner"
+        class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 transform translate-y-full transition-transform duration-300">
+
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex-1 mb-4 md:mb-0">
+                <p class="text-sm">
+                    Questo sito utilizza cookie per migliorare la tua esperienza di navigazione.
+                    <a href="public/privacy.html">Privacy Policy</a> |
+                    <a href="public/cookie-policy.html">Cookie Policy</a>
+                </p>
+            </div>
+            <div class="flex space-x-3">
+                <button id="cookie-accept" class="px-4 py-2 rounded text-sm transition duration-300">
+                    Accetta tutti
+                </button>
+                <button id="cookie-reject" class="px-4 py-2 rounded text-sm transition duration-300">
+                    Rifiuta
+                </button>
+                <button id="cookie-settings" class="px-4 py-2 rounded text-sm transition duration-300">
+                    Impostazioni
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookie-modal" class="fixed inset-0 bg-black bg-opacity-50 z-60 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">Impostazioni Cookie</h3>
+                        <button id="cookie-modal-close" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="border-b pb-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Cookie Necessari</h4>
+                                    <p class="text-sm text-gray-600">Questi cookie sono essenziali per il funzionamento
+                                        del sito.</p>
+                                </div>
+                                <input type="checkbox" checked disabled class="form-checkbox h-5 w-5 text-primary">
+                            </div>
+                        </div>
+
+                        <div class="border-b pb-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Cookie Analitici</h4>
+                                    <p class="text-sm text-gray-600">Ci aiutano a capire come i visitatori interagiscono
+                                        con il sito.</p>
+                                </div>
+                                <input type="checkbox" id="analytics-cookies"
+                                    class="form-checkbox h-5 w-5 text-primary">
+                            </div>
+                        </div>
+
+                        <div class="border-b pb-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Cookie di Marketing</h4>
+                                    <p class="text-sm text-gray-600">Utilizzati per tracciare i visitatori sui siti web
+                                        per mostrare annunci pertinenti.</p>
+                                </div>
+                                <input type="checkbox" id="marketing-cookies"
+                                    class="form-checkbox h-5 w-5 text-primary">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button id="cookie-save-settings"
+                            class="bg-primary hover:bg-red-700 text-white px-6 py-2 rounded transition duration-300">
+                            Salva Impostazioni
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript ottimizzato -->
+
+
+
+</body>
+
+</html>
